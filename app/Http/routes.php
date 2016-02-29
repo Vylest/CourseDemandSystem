@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +23,25 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => ['web','guest']], function () {
+    Route::get('/home', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
 });
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => ['web','auth']], function () {
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+    // students
+    Route::resource('students', 'StudentController');
+
+    //courses
+    Route::resource('courses', 'CourseController');
+
+    //program
+    Route::resource('program', 'ProgramController');
+
+    //user
+    Route::resource('user', 'UserController');
+
+    //Route::get('/home', 'HomeController@index');
 });
