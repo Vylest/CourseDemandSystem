@@ -18,7 +18,7 @@ class CreateEnrollmentsTable extends Migration
             $table->string('semester');
             $table->boolean('completed');
             $table->integer('pos_id')->references('id')->on('plan_of_studies')->unsigned();
-            $table->integer('class_id')->references('id')->on('classes')->unsigned();
+            $table->integer('course_id')->references('id')->on('courses')->unsigned();
             $table->timestamps();
         });
     }
