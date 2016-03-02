@@ -16,8 +16,8 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('first_name', 20);
             $table->string('last_name', 20);
-            $table->string('netid', 25);
-            $table->integer('nuid', 10);
+            $table->string('net_id', 25);
+            $table->integer('nu_id');
             $table->timestamps();
         });
     }

@@ -26,10 +26,11 @@
 Route::group(['middleware' => ['web','guest']], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('/', 'HomeController@index');
+    Route::get('/login', 'UserController@login');
 });
 
 Route::group(['middleware' => ['web','auth']], function () {
-    Route::auth();
+    //Route::auth();
 
     // students
     Route::resource('students', 'StudentController');
@@ -40,8 +41,24 @@ Route::group(['middleware' => ['web','auth']], function () {
     //program
     Route::resource('program', 'ProgramController');
 
+    // plan of study
+    Route::resource('plan', 'PlanOfStudyController');
+
     //user
     Route::resource('user', 'UserController');
-
-    //Route::get('/home', 'HomeController@index');
 });
+
+Route::group(['middleware'=>['web','admin']], function () {
+    Route::post('users/{id}/destroy', 'UsersController@destroy');
+    Route::post('users/{id}/update', 'UsersController@update');
+    Route::resource('users', 'UsersController');
+    Route::get('users/{id}/edit', 'UsersController@edit');
+    Route::get('users/{id}/password', array('uses' => 'UsersController@changePassword', 'as' => 'users.password'));
+});
+
+Route::get('auth/logout', array('uses' => 'UsersController@logout', 'as' => 'auth.logout'));
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);

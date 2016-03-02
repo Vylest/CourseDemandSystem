@@ -149,20 +149,34 @@
         <div id="nav" class="navbar">
             <div class="inner-content"><ul class="nav clearfix">
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Dropdown Menu Item <b class="caret"> </b></a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">One</a></li>
+                            <li><a href="">Manage Students</a></li>
                             <li><a href="">Two</a></li>
                         </ul>
                     </li>
-                    <li><a href="">Menu Item Without Dropdown</a></li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/course">Manage Courses</a></li>
+                            <li><a href="">Two</a></li>
+                        </ul>
+                    </li>
+                    @if (Auth::guest())
+                        <li><a href="/login">Login</a></li>
+                    @else
+                        <li><a href="{{ action('UsersController@manageAccount', [Auth::user()->id]) }}">My Account</a></li>
+                        @if (Auth::user()->account_type == 2)
+                            <li><a href="/user/account">Admin Panel</a></li>
+                        @endif
+                    @endif
                 </ul></div>
         </div>
     </div>
     <div role="main">
         <div id="hero">
             <div class="inner-content">
-                <h1>Page Header</h1>
+                <h1>Course Demand System</h1>
             </div>
         </div>
         <div id="breadcrumbs">
@@ -170,9 +184,9 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <ul class="breadcrumb">
-                            <li><a href="">UNO</a></li>
-                            <li><a href="">College of Information Science &amp; Technology</a></li>
-                            <li><a href="">This Page</a></li>
+                            <li><a href="http://www.unomaha.edu/">UNO</a></li>
+                            <li><a href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a></li>
+                            <li><a href="/">Course Demand System</a></li>
                         </ul>
                     </div>
                 </div>
