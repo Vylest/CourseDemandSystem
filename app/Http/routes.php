@@ -26,7 +26,7 @@
 Route::group(['middleware' => ['web','guest']], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('/', 'HomeController@index');
-    Route::get('/login', 'UserController@login');
+    Route::get('auth/login', 'UserController@login');
 });
 
 Route::group(['middleware' => ['web','auth']], function () {
@@ -42,7 +42,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::resource('program', 'ProgramController');
 
     // plan of study
-    Route::resource('plan', 'PlanOfStudyController');
+    Route::resource('students.plan', 'StudentController');
 
     //user
     Route::resource('user', 'UserController');

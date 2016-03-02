@@ -18,10 +18,12 @@ class UserController extends Controller
     public function index() {
         $loggedInUser = Auth::user();
         $loggedInUserId = $loggedInUser['id'];
-        if (isset($loggedInUserId)) {
-            $users = User::all();
-            return view('user.index', compact(['user'], "loggedInUserId"));
-        }
+        $users = User::all();
+       if (isset($loggedInUserId)) {
+            return view('user.index', compact('users', 'loggedInUserId'));
+        } else {
+           return view('user.index', compact('users'));
+       }
     }
 
     public function show($id) {
@@ -33,20 +35,46 @@ class UserController extends Controller
         return view('user.create');
     }
 
-    public function store() {
-
+    public function store(Requests\UserCreateRequest $request) {
+        $user = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->type = $request->type;
+        $user->save();
+        return redirect()->route('users.index')->with('message', 'Your user was created.');
     }
 
-    public function edit() {
-
+    public function edit($id) {
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
     }
 
-    public function update() {
+    public function update($id, Requests\UserEditRequest $request) {
+        $user = User::findOrFail($id);
 
+        if($request->password == $request->password_confirmation) {
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->type = $request->type;
+            $user->update();
+            return redirect()->route('users.index')->with('message', 'User updated successfully.');
+        } else {
+            return redirect()->back()->withErrors('Password does not match the confirmation');
+}
     }
 
-    public function destroy() {
+    public function destroy($id) {
+        $user = User::findOrFail($id);
 
+        if($user->delete()) {
+            return redirect()->route('users.index')->with('message', 'User Deleted!');
+        } else {
+            return redirect()->back()->withErrors(['error', 'Account Deletion Failed!']);
+        }
     }
 
     public function login() {
