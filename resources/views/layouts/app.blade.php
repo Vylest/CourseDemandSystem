@@ -165,7 +165,14 @@
                     @if (Auth::guest())
                         <li><a href="/login">Login</a></li>
                     @else
-                        <li><a href="{{ action('UsersController@manageAccount', [Auth::user()->id]) }}">My Account</a></li>
+
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->first_name }} <b class="caret"> </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ action('UsersController@manageAccount', [Auth::user()->id]) }}">My Account</a></li>
+                                <li><a href="">Two</a></li>
+                            </ul>
+                        </li>
                         @if (Auth::user()->account_type == 2)
                             <li><a href="/user/account">Admin Panel</a></li>
                         @endif

@@ -49,14 +49,22 @@ Route::group(['middleware' => ['web','auth']], function () {
 });
 
 Route::group(['middleware'=>['web','admin']], function () {
-    Route::post('users/{id}/destroy', 'UsersController@destroy');
-    Route::post('users/{id}/update', 'UsersController@update');
-    Route::resource('users', 'UsersController');
-    Route::get('users/{id}/edit', 'UsersController@edit');
-    Route::get('users/{id}/password', array('uses' => 'UsersController@changePassword', 'as' => 'users.password'));
+    Route::post('users/{id}/destroy', 'UserController@destroy');
+    Route::post('users/{id}/update', 'UserController@update');
+    Route::resource('users', 'UserController');
+    Route::get('users/{id}/edit', 'UserController@edit');
+    Route::get('users/{id}/password', array('uses' => 'UserController@changePassword', 'as' => 'users.password'));
 });
 
-Route::get('auth/logout', array('uses' => 'UsersController@logout', 'as' => 'auth.logout'));
+Route::group(['middleware' => ['id','auth','web']], function ($id) {
+    Route::get('users/{id}/editAccount', 'UserController@editAccount');
+    Route::patch('users/{id}/updateAccount', 'UserController@updateAccount');
+    Route::get('users/{id}/account', array('uses' => 'UserController@manageAccount', 'as' => 'users.account'));
+    Route::get('users/{id}/changeMyPassword', array('uses' => 'UserController@changeAccountPassword', 'as' => 'users.accountPassword'));
+    Route::patch('users/{id}/updatePassword', 'UserController@updatePassword');
+});
+
+Route::get('auth/logout', array('uses' => 'UserController@logout', 'as' => 'auth.logout'));
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
