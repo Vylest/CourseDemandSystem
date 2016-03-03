@@ -18,6 +18,7 @@ class CreateRequirementsTable extends Migration
             $table->integer('program_id')->references('id')->on('programs')->unsigned();
             $table->integer('class_id')->references('id')->on('classes')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

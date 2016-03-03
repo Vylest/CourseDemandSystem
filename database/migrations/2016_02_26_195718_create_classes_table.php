@@ -17,6 +17,7 @@ class CreateClassesTable extends Migration
             $table->string('number', 12);
             $table->string('title');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

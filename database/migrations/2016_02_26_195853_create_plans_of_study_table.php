@@ -16,8 +16,8 @@ class CreatePlansOfStudyTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->references('id')->on('students')->unsigned();
             $table->integer('program_id')->references('id')->on('programs')->unsigned();
-            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
