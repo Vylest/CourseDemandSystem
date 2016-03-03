@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlanOfStudiesTable extends Migration
+class CreatePlansOfStudyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreatePlanOfStudiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plan_of_studies', function (Blueprint $table) {
+        Schema::create('plans_of_study', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('student_id')->references('id')->on('students')->unsigned();
+            $table->integer('program_id')->references('id')->on('programs')->unsigned();
             
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ class CreatePlanOfStudiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('plan_of_studies');
+        Schema::drop('plans_of_study');
     }
 }

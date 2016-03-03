@@ -14,10 +14,10 @@ class CreateEnrollmentsTable extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('credits');
+            $table->integer('credits');
             $table->string('semester');
             $table->boolean('completed');
-            $table->integer('pos_id')->references('id')->on('plan_of_studies')->unsigned();
+            $table->integer('plan_of_study_id')->references('id')->on('plans_of_study')->unsigned();
             $table->integer('class_id')->references('id')->on('classes')->unsigned();
             $table->timestamps();
         });

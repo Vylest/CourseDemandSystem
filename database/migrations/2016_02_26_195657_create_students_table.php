@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->string('first_name', 20);
             $table->string('last_name', 20);
             $table->string('netid', 25);
-            $table->integer('nuid', 10);
+            $table->string('nuid', 8)->nullable()->unique();
             $table->timestamps();
         });
     }
