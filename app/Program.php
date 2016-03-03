@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
+    protected $fillable = ['name','type','career'];
+
     public function plansOfStudy() {
         return $this->belongsToMany('PlanofStudy');
     }

@@ -65,9 +65,13 @@ Route::group(['middleware' => ['id','auth','web']], function ($id) {
     Route::patch('users/{id}/updatePassword', 'UserController@updatePassword');
 });
 
+Route::group(['middleware' => ['web']], function ($id) {
+    Route::controllers([
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+    ]);
+});
+
 Route::get('auth/logout', array('uses' => 'UserController@logout', 'as' => 'auth.logout'));
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+

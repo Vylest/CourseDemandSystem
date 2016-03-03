@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    protected $fillable = ['number','title'];
+
     public function requirements() {
         return $this->belongsToMany('Requirements');
     }
