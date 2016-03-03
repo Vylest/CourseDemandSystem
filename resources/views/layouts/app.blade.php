@@ -163,7 +163,7 @@
                         </ul>
                     </li>
                     @if (Auth::guest())
-                        <li><a href="/login">Login</a></li>
+                        <li><a href="/auth/login">Login</a></li>
                     @else
 
                         <li class="dropdown">

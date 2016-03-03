@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    @include('partials._flash')
-    @include('partials._errors')
     <div class="row">
+        @include('partials._flash')
+        @include('partials._errors')
         <div class="col-md-6 col-md-offset-1">
             <div class="panel panel-default">
                 <h3 class="panel-heading">Login</h3>

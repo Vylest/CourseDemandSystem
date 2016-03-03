@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin', ['only'=>['create','edit','update','destroy','store']]);
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('admin', ['only'=>['create','edit','update','destroy','store']]);
+//    }
 
     public function index() {
         $loggedInUser = Auth::user();
