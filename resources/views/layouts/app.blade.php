@@ -105,25 +105,7 @@
 
 <body>
 <div class="subsite" id="content">
-    <div class="visible-mobile" id="header_mobile">
-        <div class="main-header clearfix">
-            <div class="inner-content">
-                <div class="subsite-logos">
-                    <div>
-                        <a class="home-logo" href="http://www.unomaha.edu/">
-                            <img alt="University of Nebraska Omaha" src="https://www.unomaha.edu/_files/images/logo-subsite-o.png"/>
-                        </a>
-                    </div>
-                    <div>
-                        <!-- USER HEADER MOBILE -->
-                        <a class="college" href="http://unomaha.edu">University of Nebraska Omaha</a>
-                        <a class="department" href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a>
-                        <!-- /USER HEADER MOBILE -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <nav></nav>
     <div class="hide-mobile" id="header">
@@ -151,28 +133,32 @@
         </div>
         <div id="nav" class="navbar">
             <div class="inner-content"><ul class="nav clearfix">
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="">Manage Students</a></li>
-                            <li><a href="">Two</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
-                        <ul class="dropdown-menu">
-
-                            <li><a href="">View Courses</a></li>
-                        </ul>
-                    </li>
                     @if (Auth::guest())
                         <li><a href="/auth/login">Login</a></li>
                     @else
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Manage Students</a></li>
+                                <li><a href="">Two</a></li>
+                            </ul>
+                        </li>
 
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret"> </b></a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
+                            <ul class="dropdown-menu">
+
+                                <li><a href="">View Courses</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->first_name }} <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
-{{--                                <li><a href="{{ action('UserController@manageAccount', [Auth::user()->id]) }}">My Account</a></li>--}}
+                                <li><a href="{{ action('UserController@manageAccount', [Auth::user()->id]) }}">My Account</a></li>
                                 <li><a href="{{ action('UserController@logout') }}">Log Out</a></li>
                             </ul>
                         </li>

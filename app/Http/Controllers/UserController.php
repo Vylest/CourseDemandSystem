@@ -22,12 +22,12 @@ class UserController extends Controller
     public function index() {
         $loggedInUser = Auth::user();
         $users = User::all();
-
-           return view('user.index', compact('users'));
+        $roles = ['read-only','user','admin'];
+           return view('user.index', compact('users','roles'));
     }
 
     public function show($id) {
-        $user = User::where('id', $id)->get();
+        $user = User::where('id', $id)->first();
         return view('user.show', compact('user'));
     }
 
@@ -58,8 +58,10 @@ class UserController extends Controller
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->type = $request->type;
+            if($request->password != "" and $request->password != null) {
+                $user->password = bcrypt($request->password);
+            }
+            $user->account_type = $request->account_type;
             $user->update();
             return redirect()->route('users.index')->with('message', 'User updated successfully.');
         } else {
@@ -94,7 +96,6 @@ class UserController extends Controller
 
     public function manageAccount($id)
     {
-        dd('sdf');
         $user = User::findOrFail($id);
         return view('user.account', compact('user'));
     }

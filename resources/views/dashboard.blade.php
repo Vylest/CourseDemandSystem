@@ -15,8 +15,8 @@
     </ul>
 
     <div class="row-fluid">
-        <div class="span8">
-            <p>Vivamus quis risus quis tellus dignissim lacinia vitae non eros. Nulla sollicitudin elit vitae nulla porttitor mollis. Sed vitae semper nulla. Nam eget mauris luctus, porta eros eu, maximus velit. Nunc convallis lectus urna. Vivamus at porttitor nulla. Etiam tempor malesuada urna vitae molestie. Quisque finibus nec quam vitae cursus. Aliquam eget magna ante. Donec et hendrerit est. Donec ornare leo a posuere iaculis. Morbi nunc augue, fermentum at libero id, vestibulum condimentum justo. In sagittis varius est, non pulvinar nunc tincidunt eu. Proin sed porta leo, non dapibus diam. Mauris aliquam velit tempor metus dignissim scelerisque. </p>
+        <div class="span4">
+            <p>eyyyy</p>
         </div>
         <div class="span4">
             <p>Cras auctor tincidunt venenatis. Phasellus ac nibh et erat rhoncus consequat a id massa. Quisque a lectus vel libero vehicula elementum ut ac dui. Praesent id ullamcorper eros. Nunc ligula quam, tristique vitae quam sit amet, sollicitudin efficitur nisl. Maecenas mattis cursus erat in porttitor. Curabitur dapibus velit eget accumsan venenatis. Vivamus non tempor dolor. </p>
@@ -27,8 +27,8 @@
     <table class="gridder">
         <thead>
         <tr>
-            <th>What a</th>
-            <th>Pretty</th>
+            <th>Resource</th>
+            <th>Operation</th>
             <th>Table</th>
         </tr>
         </thead>
