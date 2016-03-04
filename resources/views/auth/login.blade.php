@@ -54,14 +54,14 @@
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label class="span4 control-label">E-Mail Address</label>
+                    <label class="span4 control-label">University of Nebraska ID</label>
 
                     <div class="span4">
-                        <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                        <input type="text" class="form-control" name="nu_id" value="{{ old('nu_id') }}">
 
-                        @if ($errors->has('email'))
+                        @if ($errors->has('nu_id'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong>{{ $errors->first('nu_id') }}</strong>
                             </span>
                         @endif
                     </div>

@@ -29,8 +29,10 @@ Route::group(['middleware' => ['web']], function ($id) {
         'password' => 'Auth\PasswordController',
     ]);
 
+    Route::auth();
+
     Route::group(['middleware' => ['guest']], function () {
-        Route::get('/home', 'HomeController@index');
+        Route::get('/home', 'UserController@login');
         Route::get('/', 'UserController@login');
         Route::get('auth/login', 'UserController@login');
 

@@ -105,8 +105,6 @@
 
 <body>
 <div class="subsite" id="content">
-
-
     <nav></nav>
     <div class="hide-mobile" id="header">
         <div class="main-header clearfix">
@@ -134,25 +132,26 @@
         <div id="nav" class="navbar">
             <div class="inner-content"><ul class="nav clearfix">
                     @if (Auth::guest())
-                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="{{ action('UserController@login') }}">Login</a></li>
                     @else
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Manage Students</a></li>
-                                <li><a href="">Two</a></li>
+                                <li><a href="{{ action('StudentController@index') }}">View Students</a></li>
                             </ul>
                         </li>
 
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret"> </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ action('ProgramController@index') }}">View Programs</a></li>
+                            </ul>
                         </li>
 
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
-
-                                <li><a href="">View Courses</a></li>
+                                <li><a href="{{ action('CourseController@index') }}">View Courses</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
