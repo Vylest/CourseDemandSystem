@@ -24,10 +24,10 @@ class MustBeAdmin
 
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && ($request->user()->type == '2')) {
+        if (Auth::check() && ($request->user()->account_type == 2)) {
             return $next($request);
         } else {
-            return redirect()->back()->withErrors('You must be an admin to create, update and delete records');
+            return redirect()->back()->withErrors('You must be an admin to access this resource.');
         }
     }
 }

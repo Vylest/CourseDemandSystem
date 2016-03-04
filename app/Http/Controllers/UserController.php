@@ -21,13 +21,9 @@ class UserController extends Controller
 
     public function index() {
         $loggedInUser = Auth::user();
-        $loggedInUserId = $loggedInUser['id'];
         $users = User::all();
-       if (isset($loggedInUserId)) {
-            return view('user.index', compact('users', 'loggedInUserId'));
-        } else {
+
            return view('user.index', compact('users'));
-       }
     }
 
     public function show($id) {
@@ -98,6 +94,7 @@ class UserController extends Controller
 
     public function manageAccount($id)
     {
+        dd('sdf');
         $user = User::findOrFail($id);
         return view('user.account', compact('user'));
     }

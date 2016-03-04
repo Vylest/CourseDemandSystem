@@ -94,10 +94,13 @@
         }
         /* /TEMPLATE CSS FIXES */
 
+
         /* USER STYLES */
 
         /* /USER STYLES */
+
     </style>
+    @yield('header')
 </head>
 
 <body>
@@ -158,8 +161,8 @@
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/course">Manage Courses</a></li>
-                            <li><a href="">Two</a></li>
+
+                            <li><a href="">View Courses</a></li>
                         </ul>
                     </li>
                     @if (Auth::guest())
@@ -169,12 +172,20 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->first_name }} <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ action('UserController@manageAccount', [Auth::user()->id]) }}">My Account</a></li>
-                                <li><a href="">Two</a></li>
+{{--                                <li><a href="{{ action('UserController@manageAccount', [Auth::user()->id]) }}">My Account</a></li>--}}
+                                <li><a href="{{ action('UserController@logout') }}">Log Out</a></li>
                             </ul>
                         </li>
                         @if (Auth::user()->account_type == 2)
-                            <li><a href="/user/account">Admin Panel</a></li>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"> </b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ action('CourseController@index') }}">Manage Courses</a></li>
+                                    <li><a href="{{ action('StudentController@index') }}">Manage Students</a></li>
+                                    <li><a href="{{ action('ProgramController@index') }}">Manage Programs</a></li>
+                                    <li><a href="{{ action('UserController@index') }}">Manage Users</a></li>
+                                </ul>
+                            </li>
                         @endif
                     @endif
                 </ul></div>
@@ -199,7 +210,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-2 nav-r" id="content_main">
+        <div class="nav-r" id="content_main">
             <div class="inner-content">
                 <!-- USER MAIN CONTENT -->
                 @yield('content')
