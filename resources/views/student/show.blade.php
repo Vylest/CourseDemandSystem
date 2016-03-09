@@ -12,7 +12,7 @@
     </ul>
     {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
                                'action'=>['StudentController@destroy', $student->id]]) !!}
-        <a href="{{ action('StudentController@edit', $student->id) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ action('StudentController@edit', $student->id) }}" class="btn">Edit</a>
         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @endsection
