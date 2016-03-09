@@ -15,6 +15,8 @@
     <link href="//www.unomaha.edu/_files/css/default-001-header-footer.css" rel="stylesheet"/>
     <script src="//www.unomaha.edu/_files/js/modernizr-2.5.3.min.js"></script>
     <script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
+
+
     <link href="//www.unomaha.edu/_files/css/colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
     <style type="text/css">
         /* TEMPLATE CSS FIXES */
@@ -94,8 +96,18 @@
         }
         /* /TEMPLATE CSS FIXES */
 
-
         /* USER STYLES */
+
+        .alert {
+            padding-left:10px;
+            padding-right:20px !important;
+        }
+
+        #content_main > .inner-content {
+            -webkit-border-radius:10px !important;
+            -moz-border-radius:10px !important;
+            border-radius:10px !important;
+        }
 
         /* /USER STYLES */
 
@@ -291,7 +303,7 @@
 
 
 <!-- USER SCRIPTS -->
-
+<script src="{{ asset('/js/app.js') }}"></script>
 <!-- /USER SCRIPTS -->
 
 </body>

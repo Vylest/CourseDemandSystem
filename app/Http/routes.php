@@ -35,45 +35,45 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::get('/home', 'UserController@login');
         Route::get('/', 'UserController@login');
         Route::get('auth/login', 'UserController@login');
-
     });
 
     Route::get('auth/logout', array('uses' => 'UserController@logout', 'as' => 'auth.logout'));
+
+    Route::group(['middleware' => ['auth']], function () {
+        // students
+        Route::resource('students', 'StudentController');
+
+        //courses
+        Route::resource('courses', 'CourseController');
+
+        //program
+        Route::resource('program', 'ProgramController');
+
+        // plan of study
+        Route::resource('students.plan', 'PlanOfStudyController');
+
+
+        Route::group(['middleware' => ['id']], function ($id) {
+            Route::get('users/{id}/editAccount', 'UserController@editAccount');
+            Route::patch('users/{id}/updateAccount', 'UserController@updateAccount');
+            Route::get('users/{id}/account', array('uses' => 'UserController@manageAccount', 'as' => 'user.account'));
+            Route::get('users/{id}/changeMyPassword', array('uses' => 'UserController@changeAccountPassword', 'as' => 'user.accountPassword'));
+            Route::patch('users/{id}/updatePassword', 'UserController@updatePassword');
+        });
+
+        Route::group(['middleware'=>['admin']], function () {
+            Route::resource('users', 'UserController');
+            Route::get('users/{id}/password', array('uses' => 'UserController@changePassword', 'as' => 'users.password'));
+        });
+
+        Route::get('/', 'HomeController@dashboard');
+        Route::get('dashboard', 'HomeController@dashboard');
+    });
 });
 
 
 
-Route::group(['middleware' => ['web','auth']], function () {
-    // students
-    Route::resource('students', 'StudentController');
 
-    //courses
-    Route::resource('courses', 'CourseController');
-
-    //program
-    Route::resource('program', 'ProgramController');
-
-    // plan of study
-    Route::resource('students.plan', 'PlanOfStudyController');
-
-
-    Route::group(['middleware' => ['id']], function ($id) {
-        Route::get('users/{id}/editAccount', 'UserController@editAccount');
-        Route::patch('users/{id}/updateAccount', 'UserController@updateAccount');
-        Route::get('users/{id}/account', array('uses' => 'UserController@manageAccount', 'as' => 'user.account'));
-        Route::get('users/{id}/changeMyPassword', array('uses' => 'UserController@changeAccountPassword', 'as' => 'user.accountPassword'));
-        Route::patch('users/{id}/updatePassword', 'UserController@updatePassword');
-    });
-
-    Route::group(['middleware'=>['admin']], function () {
-        Route::resource('users', 'UserController');
-        Route::get('users/{id}/password', array('uses' => 'UserController@changePassword', 'as' => 'users.password'));
-    });
-
-
-    Route::get('/', 'HomeController@dashboard');
-    Route::get('dashboard', 'HomeController@dashboard');
-});
 
 
 

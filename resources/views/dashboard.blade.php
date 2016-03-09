@@ -3,7 +3,7 @@
 @section('content')
     @include('partials._flash')
     @include('partials._errors')
-    <h2>Dashboard</h2>
+    <h3>Dashboard</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam faucibus scelerisque. Aliquam in purus porttitor, rhoncus dui eu, mattis ante. Aliquam vel mi risus. Ut et ligula vitae lorem tempus finibus. Fusce maximus ac risus quis volutpat. Morbi a elit velit. <strong>Phasellus risus est, congue sed cursus id, mollis sit amet est.</strong> In vulputate est ut mi semper tempus. Duis ac ipsum iaculis, venenatis lectus sit amet, rutrum est. Proin purus erat, fermentum eu hendrerit quis, lacinia in ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam at lorem sapien. Curabitur non magna id augue malesuada aliquam. <i>Quisque consectetur placerat velit.</i> Fusce accumsan ac lectus quis varius. In cursus, velit et facilisis gravida, quam velit condimentum quam, tincidunt rutrum tortor lacus nec augue. </p>
 
     <h3>Second-level content heading</h3>

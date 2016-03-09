@@ -15,7 +15,6 @@ class CreatePlanOfStudiesTable extends Migration
         Schema::create('plan_of_studies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('student_id')->references('id')->on('students')->unsigned();
-            
             $table->timestamps();
         });
     }

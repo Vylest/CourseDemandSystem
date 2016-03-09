@@ -47,7 +47,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->type = $request->type;
         $user->save();
-        return redirect()->route('users.index')->with('message', 'Your user was created.');
+        return redirect()->route('user.index')->with('message', 'Your user was created.');
     }
 
     public function edit($id) {
@@ -67,7 +67,7 @@ class UserController extends Controller
             }
             $user->account_type = $request->account_type;
             $user->update();
-            return redirect()->route('users.index')->with('message', 'User updated successfully.');
+            return redirect()->route('user.index')->with('message', 'User updated successfully.');
         } else {
             return redirect()->back()->withErrors('Password does not match the confirmation');
 }
@@ -77,7 +77,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if($user->delete()) {
-            return redirect()->route('users.index')->with('message', 'User Deleted!');
+            return redirect()->route('user.index')->with('message', 'User Deleted!');
         } else {
             return redirect()->back()->withErrors(['error', 'Account Deletion Failed!']);
         }
