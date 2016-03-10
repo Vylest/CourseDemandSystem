@@ -1,7 +1,7 @@
 /**
  * Created by epenner on 3/9/2016.
  */
-    // Activate deletion confirmation
+// Activate deletion confirmation
 $('.delete-confirm').on('submit', function() {
     return confirm('Are you sure you want to delete this?');
 });

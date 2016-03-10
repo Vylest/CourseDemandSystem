@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.0.0",
-    "stream-http": "^2.2.0"
+    "gulp-cached": "^1.1.0",
+    "stream-http": "^2.2.0",
+    "through2": "^2.0.1"
   }
 }

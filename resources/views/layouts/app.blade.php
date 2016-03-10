@@ -4,6 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
 
+
 <head>
     <meta charset="utf-8"/>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
@@ -282,7 +283,7 @@
 
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+{{--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>--}}
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
 <script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
 <script src="//www.unomaha.edu/_files/js/jquery.flexslider-min.js" type="text/javascript"></script>
@@ -303,6 +304,8 @@
 
 
 <!-- USER SCRIPTS -->
+<script src="{{ asset('/js/angular.js') }}"></script>
+<script src="{{ asset('/js/vendor.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
 <!-- /USER SCRIPTS -->
 

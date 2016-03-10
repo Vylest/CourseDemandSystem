@@ -1,30 +1,27 @@
-//var elixir = require('laravel-elixir');
 var gulp = require('gulp');
 var prettify = require('gulp-jsbeautifier');
 var concat = require('gulp-concat');
+var less = require('gulp-less');
 var browserify = require('browserify');
 var strictify = require('strictify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var watchify = require('gulp-watchify');
 var cache = require('gulp-cached');
+var through2 = require('through2');
 
 var assets_dir = './resources/assets/';
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
+var vendor_js_files = [
+    assets_dir + "js/vendor/jquery.min.js",
+    assets_dir + "js/vendor/angular.min.js",
+    assets_dir + "js/vendor/ng-resource.min.js",
+    assets_dir + "js/vendor/ng-table.js"
+];
 
-elixir(function(mix) {
-    mix.sass('app.scss');
-});
+var angular_js_files = [
+    assets_dir + 'js/angular.js'
+];
 
 var jsbeautifier_options = {
     mode: 'VERIFY_AND_WRITE',
@@ -39,10 +36,24 @@ var watch_config = {
     scripts: assets_dir + 'js/**/*.js'
 };
 
+
+// Gulp task definitions
 gulp.task('jsbeautify', function() {
     return gulp.src(watch_config.jsbeautify)
         .pipe(prettify(jsbeautifier_options))
         .pipe(gulp.dest(assets_dir + 'js/'));
+});
+
+gulp.task('less', function() {
+    return gulp.src(assets_dir + 'less/app.less')
+        .pipe(less())
+        .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('vendor-scripts', function() {
+    return gulp.src(vendor_js_files)
+        .pipe(concat('vendor.js'))
+        .pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('scripts', ['jsbeautify'], function() {
@@ -66,11 +77,20 @@ gulp.task('scripts', ['jsbeautify'], function() {
         .pipe(gulp.dest('./public/js'));
 });
 
+gulp.task('angular', function() {
+    return gulp.src(angular_js_files)
+        .pipe(concat('angular.js'))
+        .pipe(gulp.dest('./public/js'));
+});
+
 gulp.task('js', [
-    'angular'
+    'angular', 'scripts'
 ]);
 
 gulp.task('default', [
+    'less',
+    'vendor-scripts',
+    'angular',
     'scripts'
 ]);
 
