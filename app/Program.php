@@ -18,4 +18,12 @@ class Program extends Model
     protected $dates = [
         'deleted_at'
     ];
+
+    public function plansOfStudy() {
+        return $this->hasMany('PlanofStudy');
+    }
+
+    public function degreeRequirements() {
+        return $this->hasMany('DegreeRequirement');
+    }
 }

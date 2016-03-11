@@ -14,7 +14,7 @@ class Enrollment extends Model
         'semester',
         'completed',
         'plan_of_study_id',
-        'class_id'
+        'course_id'
     ];
 
     protected $dates = [
@@ -24,4 +24,13 @@ class Enrollment extends Model
     protected $casts = [
         'completed' => 'boolean'
     ];
+
+    public function course() {
+        return $this->belongsTo('Course');
+    }
+
+    public function planOfStudy() {
+        return $this->belongsTo('PlanOfStudy');
+    }
+
 }

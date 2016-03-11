@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Class extends Model
+class Course extends Model
 {
     use SoftDeletes;
 
@@ -17,4 +17,12 @@ class Class extends Model
     protected $dates = [
         'deleted_at'
     ];
+
+    public function degreeRequirements() {
+        return $this->hasMany('DegreeRequirement');
+    }
+
+    public function enrollments() {
+        return $this->hasMany('Enrollment');
+    }
 }

@@ -19,4 +19,8 @@ class Student extends Model
     protected $dates = [
         'deleted_at'
     ];
+
+    public function PlansOfStudy() {
+        return $this->hasMany('PlanOfStudy');
+    }
 }

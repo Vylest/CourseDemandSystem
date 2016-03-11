@@ -12,10 +12,18 @@ class DegreeRequirement extends Model
     protected $fillable = [
         'type',
         'program_id',
-        'class_id'
+        'course_id'
     ];
 
     protected $dates = [
         'deleted_at'
     ];
+
+    public function program() {
+        return $this->belongsTo('Program');
+    }
+
+    public function course() {
+        return $this->belongsTo('Course');
+    }
 }
