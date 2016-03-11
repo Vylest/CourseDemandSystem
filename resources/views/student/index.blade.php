@@ -16,8 +16,8 @@
                 <tr>
                     <td>{{ $student->first_name }}</td>
                     <td>{{ $student->last_name }}
-                    <td>{{ $student->net_id }}</td>
-                    <td>{{ $student->nu_id }}</td>
+                    <td>{{ $student->netid }}</td>
+                    <td>{{ $student->nuid }}</td>
                     <td>
                         {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
                                    'action'=>['StudentController@destroy', $student->id]]) !!}
