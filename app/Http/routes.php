@@ -47,7 +47,7 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::resource('courses', 'CourseController');
 
         //program
-        Route::resource('program', 'ProgramController');
+        Route::resource('programs', 'ProgramController');
 
         // plan of study
         Route::resource('students.plan', 'PlanOfStudyController');
