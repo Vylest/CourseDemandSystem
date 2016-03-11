@@ -12,8 +12,8 @@ class StudentsSeeder extends Seeder
      */
     public function run()
     {
-        Student::create(['first_name' => 'Eric', 'last_name' => 'Penner', 'net_id' => 'epenner', 'nu_id' => '33679944']);
-        Student::create(['first_name' => 'Goyim', 'last_name' => 'Shekel', 'net_id' => 'gshekel', 'nu_id' => '23531155']);
-        Student::create(['first_name' => 'ayy', 'last_name' => 'eyyyy', 'net_id' => 'alien', 'nu_id' => '88888888']);
+        Student::create(['first_name' => 'Eric', 'last_name' => 'Penner', 'netid' => 'epenner', 'nuid' => '33679944']);
+        Student::create(['first_name' => 'Goyim', 'last_name' => 'Shekel', 'netid' => 'gshekel', 'nuid' => '23531155']);
+        Student::create(['first_name' => 'ayy', 'last_name' => 'eyyyy', 'netid' => 'alien', 'nuid' => '88888888']);
     }
 }

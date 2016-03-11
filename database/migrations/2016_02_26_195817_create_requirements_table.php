@@ -30,6 +30,6 @@ class CreateRequirementsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('requirements');
+        Schema::drop('degree_requirements');
     }
 }

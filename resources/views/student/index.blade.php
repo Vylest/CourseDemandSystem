@@ -25,8 +25,8 @@
                     <td>
                         {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
                                    'action'=>['StudentController@destroy', $student->id]]) !!}
-                            <a href="{{ action('StudentController@edit', $student->id) }}" class="btn btn-cta-red">Edit</a>
-                            {!! Form::submit('Delete', ['class' => 'btn']) !!}
+                            <a href="{{ action('StudentController@edit', $student->id) }}" class="btn btn-cta-red"><i class="fa fa-edit"></i> Edit</a>
+                            <button type="submit" class="btn"><i class="fa fa-trash"></i> Delete</button>
                         {!! Form::close() !!}
                     </td>
                 </tr>

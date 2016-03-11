@@ -72,8 +72,10 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ action('StudentController@create') }}">Add New Student</a></li>
                                 <li><a href="{{ action('StudentController@index') }}">View Students</a></li>
+                                @if (Auth::user()->account_type == 2)
+                                    <li><a href="{{ action('StudentController@create') }}">Add New Student</a></li>
+                                @endif
                             </ul>
                         </li>
 
@@ -81,6 +83,9 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ action('ProgramController@index') }}">View Programs</a></li>
+                                @if (Auth::user()->account_type == 2)
+                                    <li><a href="{{ action('ProgramController@create') }}">Add New Program</a></li>
+                                @endif
                             </ul>
                         </li>
 
@@ -125,7 +130,7 @@
                         <ul class="breadcrumb">
                             <li><a href="http://www.unomaha.edu/">UNO</a></li>
                             <li><a href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a></li>
-                            <li><a href="/">Course Demand System</a></li>
+                            <li><a href="/">MavPlan</a></li>
                         </ul>
                     </div>
                 </div>

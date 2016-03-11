@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials._errors')
-    @include('partials._flash')
     <table class="gridder">
         <thead>
             <tr>
@@ -23,9 +21,9 @@
                     <td>
                         {!! Form::model($course, ['method'=>'delete', 'class' => 'delete-confirm', 'action' => ['CourseController@destroy', $course->id]]) !!}
                             <span class="pull-right">
-                                 <a href="{{ action('CourseController@show',  $course->id) }}" class="btn">View</a>
-                                 <a href="{{ action('CourseController@edit',  $course->id) }}" class="btn btn-info">Edit</a>
-                                {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                                <a href="{{ action('CourseController@show',  $course->id) }}" class="btn"><i class="fa fa-eye"></i> View</a>
+                                <a href="{{ action('CourseController@edit',  $course->id) }}" class="btn"><i class="fa fa-edit"></i> Edit</a>
+                                <button type="submit" class="btn"><i class="fa fa-trash"></i> Delete</button>
                             </span>
                         {!! Form::close() !!}
                     </td>
