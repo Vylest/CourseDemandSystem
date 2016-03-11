@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title'){{ $student->first_name }} {{ $student->last_name }} ({{ $student->netid }}, {{ $student->nuid }}) @endsection
+@section('page_title'){{ $student->name }} ({{ $student->netid }}, {{ $student->nuid }}) @endsection
 
 @section('content')
     {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
