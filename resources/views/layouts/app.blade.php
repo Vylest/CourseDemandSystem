@@ -8,7 +8,7 @@
     <meta charset="utf-8"/>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
     <!-- InstanceBeginEditable name="doctitle" -->
-    <title>University of Nebraska Omaha | Course Demand System</title>
+    <title>MavPlan | University of Nebraska Omaha</title>
     <meta content="" name="description"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
@@ -18,84 +18,8 @@
 
 
     <link href="//www.unomaha.edu/_files/css/colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="//www.ist.unomaha.edu/css/template_fixes.css">
     <style type="text/css">
-        /* TEMPLATE CSS FIXES */
-        #hero {
-            background: url("//www.unomaha.edu/_files/images/bkg-coe.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
-        }
-        #hero > .inner-content > h1 {
-            font-size: 2em;
-        }
-        label {
-            text-align: left !important;
-        }
-        html.break-mobile #content #content_main {
-            background-color: #fff;
-            border-bottom: 24px solid #fff;
-        }
-        #content > #header_mobile > .main-header > .inner-content > .subsite-logos {
-            display: block;
-            height: auto;
-        }
-        #content_main > .inner-content {
-            border-top: 16px solid white;
-        }
-        #content_main input[type="checkbox"] {
-            height: auto;
-            width: auto;
-            margin-bottom: 7px;
-        }
-        #content_main textarea {
-            background-color: #eaeaea;
-            border: 0 transparent;
-        }
-        #content_main textarea, #content_main input[type="text"], #content_main select {
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-        }
-        #content_main p.bg-success {
-            box-sizing: border-box;
-            padding: 9px 16px;
-            background-color: #dff0d8;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 0 0 10px !important;
-        }
-
-        #content_main a.btn {
-            color: #606060;
-        }
-
-        #content_main a.btn.btn-cta-red {
-            color: white;
-        }
-
-        #content_main a.btn-cta {
-            font-family: "urwgroteskmedregular";
-            font-weight: 400;
-            margin-bottom: 0px;
-            background-position: 0% 0%;
-        }
-        #content_main input[type="text"], input[type="password"], input[type="email"], textarea {
-            background: #eaeaea;
-            border-radius: 3px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-            border: 0 none;
-            color: #000;
-        }
-
-        .span4 input[type="text"], .span4 input[type="password"], .span4 input[type="email"], .span4 textarea {
-            width: 95%;
-        }
-
-        .span6 input[type="text"], .span6 input[type="password"], .span6 input[type="email"], .span6 textarea {
-            width: 97%;
-        }
-
-        .span12 input[type="text"], .span12 input[type="password"], .span12 input[type="email"], .span12 textarea {
-            width: 98.4%;
-        }
-        /* /TEMPLATE CSS FIXES */
-
         /* USER STYLES */
 
         .alert {
@@ -130,8 +54,8 @@
                     </div>
                     <div>
                         <!-- USER HEADER DESKTOP -->
-                        <a class="college" href="http://unomaha.edu">University of Nebraska Omaha</a>
-                        <a class="department" href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a>
+                        <a class="college" href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a>
+                        <a class="department" href="/">MavPlan</a>
                         <!-- /USER HEADER DESKTOP -->
                     </div>
                     <div id="sup-navigation">
