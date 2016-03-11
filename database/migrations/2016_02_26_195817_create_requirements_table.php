@@ -12,11 +12,12 @@ class CreateRequirementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requirement', function (Blueprint $table) {
+        Schema::create('requirements', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('type')->unsigned(); // required / elective: 0/1/2
-            $table->integer('program_id')->references('id')->on('programs')->unsigned();
-            $table->integer('course_id')->references('id')->on('courses')->unsigned();
+            $table->integer('program_id')->unsigned();
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
+            $table->integer('course_id')->references('id')->on('courses')->onDelete('cascade')->unsigned();
             $table->timestamps();
         });
     }

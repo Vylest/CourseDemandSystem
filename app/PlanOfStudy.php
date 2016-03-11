@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlanOfStudy extends Model
 {
+    protected $fillable = ['student_id'];
+
     public function student() {
         return $this->belongsTo('student');
     }

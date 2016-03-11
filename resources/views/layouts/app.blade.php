@@ -15,6 +15,8 @@
     <link href="//www.unomaha.edu/_files/css/default-001-header-footer.css" rel="stylesheet"/>
     <script src="//www.unomaha.edu/_files/js/modernizr-2.5.3.min.js"></script>
     <script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
+
+
     <link href="//www.unomaha.edu/_files/css/colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
     <style type="text/css">
         /* TEMPLATE CSS FIXES */
@@ -96,32 +98,25 @@
 
         /* USER STYLES */
 
+        .alert {
+            padding-left:10px;
+            padding-right:20px !important;
+        }
+
+        #content_main > .inner-content {
+            -webkit-border-radius:10px !important;
+            -moz-border-radius:10px !important;
+            border-radius:10px !important;
+        }
+
         /* /USER STYLES */
+
     </style>
+    @yield('header')
 </head>
 
 <body>
 <div class="subsite" id="content">
-    <div class="visible-mobile" id="header_mobile">
-        <div class="main-header clearfix">
-            <div class="inner-content">
-                <div class="subsite-logos">
-                    <div>
-                        <a class="home-logo" href="http://www.unomaha.edu/">
-                            <img alt="University of Nebraska Omaha" src="https://www.unomaha.edu/_files/images/logo-subsite-o.png"/>
-                        </a>
-                    </div>
-                    <div>
-                        <!-- USER HEADER MOBILE -->
-                        <a class="college" href="http://unomaha.edu">University of Nebraska Omaha</a>
-                        <a class="department" href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a>
-                        <!-- /USER HEADER MOBILE -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <nav></nav>
     <div class="hide-mobile" id="header">
         <div class="main-header clearfix">
@@ -148,21 +143,55 @@
         </div>
         <div id="nav" class="navbar">
             <div class="inner-content"><ul class="nav clearfix">
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Dropdown Menu Item <b class="caret"> </b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="">One</a></li>
-                            <li><a href="">Two</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="">Menu Item Without Dropdown</a></li>
+                    @if (Auth::guest())
+                        <li><a href="{{ action('UserController@login') }}">Login</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ action('StudentController@index') }}">View Students</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret"> </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ action('ProgramController@index') }}">View Programs</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ action('CourseController@index') }}">View Courses</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->first_name }} <b class="caret"> </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ action('UserController@manageAccount', [Auth::user()->id]) }}">My Account</a></li>
+                                <li><a href="{{ action('UserController@logout') }}">Log Out</a></li>
+                            </ul>
+                        </li>
+                        @if (Auth::user()->account_type == 2)
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"> </b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ action('CourseController@index') }}">Manage Courses</a></li>
+                                    <li><a href="{{ action('StudentController@index') }}">Manage Students</a></li>
+                                    <li><a href="{{ action('ProgramController@index') }}">Manage Programs</a></li>
+                                    <li><a href="{{ action('UserController@index') }}">Manage Users</a></li>
+                                </ul>
+                            </li>
+                        @endif
+                    @endif
                 </ul></div>
         </div>
     </div>
     <div role="main">
         <div id="hero">
             <div class="inner-content">
-                <h1>Page Header</h1>
+                <h1>Course Demand System</h1>
             </div>
         </div>
         <div id="breadcrumbs">
@@ -170,15 +199,15 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <ul class="breadcrumb">
-                            <li><a href="">UNO</a></li>
-                            <li><a href="">College of Information Science &amp; Technology</a></li>
-                            <li><a href="">This Page</a></li>
+                            <li><a href="http://www.unomaha.edu/">UNO</a></li>
+                            <li><a href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a></li>
+                            <li><a href="/">Course Demand System</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-2 nav-r" id="content_main">
+        <div class="nav-r" id="content_main">
             <div class="inner-content">
                 <!-- USER MAIN CONTENT -->
                 @yield('content')
@@ -274,7 +303,7 @@
 
 
 <!-- USER SCRIPTS -->
-
+<script src="{{ asset('/js/app.js') }}"></script>
 <!-- /USER SCRIPTS -->
 
 </body>
