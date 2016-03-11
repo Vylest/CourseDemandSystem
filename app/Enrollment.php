@@ -3,19 +3,38 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
 use Carbon\Carbon;
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Enrollment extends Model
 {
+    use SoftDeletes;
+    
+    protected $fillable = [
+        'credits',
+        'semester',
+        'completed',
+        'plan_of_study_id',
+        'course_id'
+    ];
 
-    protected $fillable = ['credits','semester','completed','pos_id','course_id'];
+    protected $dates = [
+        'deleted_at'
+    ];
 
-    public function courses() {
-        return $this->hasMany('Course');
+    protected $casts = [
+        'completed' => 'boolean'
+    ];
+
+    public function course() {
+        return $this->belongsTo('Course');
     }
 
-    public function plansOfStudy() {
-        return $this->belongsToMany('PlanOfStudy');
+    public function planOfStudy() {
+        return $this->belongsTo('PlanOfStudy');
     }
 
     // mutators

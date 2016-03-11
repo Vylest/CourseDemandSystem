@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
     <!-- InstanceBeginEditable name="doctitle" -->
-    <title>University of Nebraska Omaha | Course Demand System</title>
+    <title>MavPlan | University of Nebraska Omaha</title>
     <meta content="" name="description"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
@@ -24,84 +24,8 @@
     <!-- /USER SCRIPTS -->
 
     <link href="//www.unomaha.edu/_files/css/colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="//www.ist.unomaha.edu/css/template_fixes.css">
     <style type="text/css">
-        /* TEMPLATE CSS FIXES */
-        #hero {
-            background: url("//www.unomaha.edu/_files/images/bkg-coe.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
-        }
-        #hero > .inner-content > h1 {
-            font-size: 2em;
-        }
-        label {
-            text-align: left !important;
-        }
-        html.break-mobile #content #content_main {
-            background-color: #fff;
-            border-bottom: 24px solid #fff;
-        }
-        #content > #header_mobile > .main-header > .inner-content > .subsite-logos {
-            display: block;
-            height: auto;
-        }
-        #content_main > .inner-content {
-            border-top: 16px solid white;
-        }
-        #content_main input[type="checkbox"] {
-            height: auto;
-            width: auto;
-            margin-bottom: 7px;
-        }
-        #content_main textarea {
-            background-color: #eaeaea;
-            border: 0 transparent;
-        }
-        #content_main textarea, #content_main input[type="text"], #content_main select {
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-        }
-        #content_main p.bg-success {
-            box-sizing: border-box;
-            padding: 9px 16px;
-            background-color: #dff0d8;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 0 0 10px !important;
-        }
-
-        #content_main a.btn {
-            color: #606060;
-        }
-
-        #content_main a.btn.btn-cta-red {
-            color: white;
-        }
-
-        #content_main a.btn-cta {
-            font-family: "urwgroteskmedregular";
-            font-weight: 400;
-            margin-bottom: 0px;
-            background-position: 0% 0%;
-        }
-        #content_main input[type="text"], input[type="password"], input[type="email"], textarea {
-            background: #eaeaea;
-            border-radius: 3px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-            border: 0 none;
-            color: #000;
-        }
-
-        .span4 input[type="text"], .span4 input[type="password"], .span4 input[type="email"], .span4 textarea {
-            width: 95%;
-        }
-
-        .span6 input[type="text"], .span6 input[type="password"], .span6 input[type="email"], .span6 textarea {
-            width: 97%;
-        }
-
-        .span12 input[type="text"], .span12 input[type="password"], .span12 input[type="email"], .span12 textarea {
-            width: 98.4%;
-        }
-        /* /TEMPLATE CSS FIXES */
-
         /* USER STYLES */
 
 
@@ -129,8 +53,8 @@
                     </div>
                     <div>
                         <!-- USER HEADER DESKTOP -->
-                        <a class="college" href="http://unomaha.edu">University of Nebraska Omaha</a>
-                        <a class="department" href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a>
+                        <a class="college" href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a>
+                        <a class="department" href="/">MavPlan</a>
                         <!-- /USER HEADER DESKTOP -->
                     </div>
                     <div id="sup-navigation">
@@ -148,6 +72,7 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
+                                <li><a href="{{ action('StudentController@create') }}">Add New Student</a></li>
                                 <li><a href="{{ action('StudentController@index') }}">View Students</a></li>
                             </ul>
                         </li>
@@ -190,7 +115,7 @@
     <div role="main">
         <div id="hero">
             <div class="inner-content">
-                <h1>Course Demand System</h1>
+                <h1>@yield('page_title')</h1>
             </div>
         </div>
         <div id="breadcrumbs">
@@ -209,8 +134,10 @@
         <div class="nav-r" id="content_main">
             <div class="inner-content">
                 <!-- USER MAIN CONTENT -->
+                @include('partials._flash')
+                @include('partials._errors')
                 @yield('content')
-                        <!-- /USER MAIN CONTENT -->
+                <!-- /USER MAIN CONTENT -->
             </div>
         </div>
     </div>
@@ -294,10 +221,14 @@
 <script src="//www.unomaha.edu/_files/js/script.js"></script>
 
 <script>
-    var _gaq=[['_setAccount','UA-2777175-1'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54038627-17', 'auto');
+  ga('send', 'pageview');
+
 </script>
 
 

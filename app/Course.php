@@ -3,16 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    protected $fillable = ['number','title'];
+    use SoftDeletes;
 
-    public function requirements() {
-        return $this->belongsToMany('Requirements');
+    protected $fillable = [
+        'number',
+        'title'
+    ];
+
+    protected $dates = [
+        'deleted_at'
+    ];
+
+    public function degreeRequirements() {
+        return $this->hasMany('DegreeRequirement');
     }
 
     public function enrollments() {
-        return $this->belongsToMany('Enrollment');
+        return $this->hasMany('Enrollment');
     }
 }

@@ -1,30 +1,32 @@
 @extends('layouts.app')
 
+@section('page_title')Students @endsection
+
 @section('content')
-    @include('partials._flash')
-    @include('partials._errors')
     <table class="gridder">
         <thead>
-           <tr>
-               <th>First Name</th>
-               <th>Last Name</th>
-               <th>Network ID</th>
-               <th>University ID</th>
-               <th>Operations</th>
-           </tr>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>NetID</th>
+                <th>NUID</th>
+                <th>Status</th>
+                <th>Operations</th>
+            </tr>
         </thead>
         <tbody>
             @foreach($students as $student)
                 <tr>
                     <td>{{ $student->first_name }}</td>
-                    <td>{{ $student->last_name }}</td>
-                    <td>{{ $student->net_id }}</td>
-                    <td>{{ $student->nu_id }}</td>
+                    <td>{{ $student->last_name }}
+                    <td>{{ $student->netid }}</td>
+                    <td>{{ $student->nuid }}</td>
+                    <td>{{ $student->status }}</td>
                     <td>
                         {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
                                    'action'=>['StudentController@destroy', $student->id]]) !!}
-                        <a href="{{ action('StudentController@edit', $student->id) }}" class="btn pull-right">Edit</a>
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger delete-confirm pull-right']) !!}
+                            <a href="{{ action('StudentController@edit', $student->id) }}" class="btn btn-cta-red">Edit</a>
+                            {!! Form::submit('Delete', ['class' => 'btn']) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>

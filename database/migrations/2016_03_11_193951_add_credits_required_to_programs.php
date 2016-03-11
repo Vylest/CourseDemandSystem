@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlanOfStudiesTable extends Migration
+class AddCreditsRequiredToPrograms extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,8 @@ class CreatePlanOfStudiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plan_of_studies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('student_id')->references('id')->on('students')->unsigned();
-            $table->timestamps();
+        Schema::table('programs', function (Blueprint $table) {
+            $table->integer('credits_required')->unsigned();
         });
     }
 
@@ -26,6 +24,8 @@ class CreatePlanOfStudiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('plan_of_studies');
+        Schema::table('programs', function (Blueprint $table) {
+            $table->dropColumn('credits_required');
+        });
     }
 }

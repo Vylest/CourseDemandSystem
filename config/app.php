@@ -205,6 +205,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+        'Course'            => App\Course::class,
+        'DegreeRequirement' => App\DegreeRequirement::class,
+        'Enrollment'        => App\Enrollment::class,
+        'PlanOfStudy'       => App\PlanOfStudy::class,
+        'Program'           => App\Program::class,
+        'Student'           => App\Student::class
+
     ],
 
 ];

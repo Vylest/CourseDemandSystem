@@ -1,18 +1,32 @@
 @extends('layouts.app')
 
-@section('content')
-    @include('partials._errors')
-    @include('partials._flash')
+@section('page_title'){{ $student->name }} ({{ $student->netid }}, {{ $student->nuid }}) @endsection
 
-    <h3>{{ $student->first_name }} {{ $student->last_name }}</h3>
-    <hr>
-    <ul class="standard">
-        <li><strong>Network ID:</strong>{{ $student->net_id }}</li>
-        <li><strong>University of Nebraska ID:</strong> {{ $student->nu_id }}</li>
-    </ul>
-    {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
-                               'action'=>['StudentController@destroy', $student->id]]) !!}
-        <a href="{{ action('StudentController@edit', $student->id) }}" class="btn">Edit</a>
-        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+@section('content')
+	<div class="row">
+		<div class="span6">
+			<table class="gridder">
+				<tbody>
+					<tr>
+						<td>Status</td>
+						<td>{{ $student->status }}</td>
+					</tr>
+					<tr>
+						<td>Outstanding Foundation Classes</td>
+						<td>{{ $student->foundation_outstanding ? 'Yes' : 'No' }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="span4"></div>
+		<div class="span2">
+		    {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
+		                               'action'=>['StudentController@destroy', $student->id]]) !!}
+		        <a href="{{ action('StudentController@edit', $student->id) }}" class="btn btn-cta-red">Edit</a>
+		        {!! Form::submit('Delete', ['class' => 'btn']) !!}
+		    {!! Form::close() !!}
+		</div>
+	</div>
+
+    <h3>{{ str_plural('Plan', $student->plansOfStudy->count()) }} of Study</h3>
 @endsection

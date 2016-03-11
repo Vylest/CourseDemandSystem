@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCoursesTable extends Migration
+class AddGraduatedFlagToPos extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,8 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('number', 12);
-            $table->string('title');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('plans_of_study', function (Blueprint $table) {
+            $table->boolean('graduated')->default(false);
         });
     }
 
@@ -28,6 +24,8 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('courses');
+        Schema::table('plans_of_study', function (Blueprint $table) {
+            $table->dropColumn('graduated');
+        });
     }
 }

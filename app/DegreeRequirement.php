@@ -5,31 +5,25 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PlanOfStudy extends Model
+class DegreeRequirement extends Model
 {
     use SoftDeletes;
-    
-    protected $table = 'plans_of_study';
 
     protected $fillable = [
-        'student_id',
+        'type',
         'program_id',
-        'graduated'
+        'course_id'
     ];
 
     protected $dates = [
         'deleted_at'
     ];
 
-    public function student() {
-        return $this->belongsTo('Student');
-    }
-
-    public function enrollments(){
-        return $this->hasMany('Enrollment');
-    }
-
     public function program() {
         return $this->belongsTo('Program');
+    }
+
+    public function course() {
+        return $this->belongsTo('Course');
     }
 }

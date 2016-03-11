@@ -18,6 +18,7 @@ class CreateProgramsTable extends Migration
             $table->string('type');
             $table->string('career');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
