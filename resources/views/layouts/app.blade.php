@@ -134,8 +134,10 @@
         <div class="nav-r" id="content_main">
             <div class="inner-content">
                 <!-- USER MAIN CONTENT -->
+                @include('partials._flash')
+                @include('partials._errors')
                 @yield('content')
-                        <!-- /USER MAIN CONTENT -->
+                <!-- /USER MAIN CONTENT -->
             </div>
         </div>
     </div>
