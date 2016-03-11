@@ -6,7 +6,7 @@
 
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
     <!-- InstanceBeginEditable name="doctitle" -->
     <title>University of Nebraska Omaha | Course Demand System</title>
@@ -16,7 +16,12 @@
     <link href="//www.unomaha.edu/_files/css/default-001-header-footer.css" rel="stylesheet"/>
     <script src="//www.unomaha.edu/_files/js/modernizr-2.5.3.min.js"></script>
     <script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
+    <!-- USER SCRIPTS -->
 
+    <script src="{{ asset('/js/vendor.js') }}"></script>
+    <script src="{{ asset('/js/angular.js') }}"></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
+    <!-- /USER SCRIPTS -->
 
     <link href="//www.unomaha.edu/_files/css/colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
     <style type="text/css">
@@ -99,20 +104,13 @@
 
         /* USER STYLES */
 
-        .alert {
-            padding-left:10px;
-            padding-right:20px !important;
-        }
 
-        #content_main > .inner-content {
-            -webkit-border-radius:10px !important;
-            -moz-border-radius:10px !important;
-            border-radius:10px !important;
-        }
+
 
         /* /USER STYLES */
 
     </style>
+    <link href="{{ asset('css/app.css') }}" media="screen" rel="stylesheet" type="text/css"/>
     @yield('header')
 </head>
 
@@ -303,11 +301,7 @@
 </script>
 
 
-<!-- USER SCRIPTS -->
-<script src="{{ asset('/js/angular.js') }}"></script>
-<script src="{{ asset('/js/vendor.js') }}"></script>
-<script src="{{ asset('/js/app.js') }}"></script>
-<!-- /USER SCRIPTS -->
+
 
 </body>
 </html>

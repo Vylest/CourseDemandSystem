@@ -45,7 +45,7 @@ gulp.task('jsbeautify', function() {
 });
 
 gulp.task('less', function() {
-    return gulp.src(assets_dir + 'less/app.less')
+    return gulp.src([assets_dir + 'less/app.less'])
         .pipe(less())
         .pipe(gulp.dest('./public/css'));
 });

@@ -23,8 +23,8 @@
                     <td>
                         {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
                                    'action'=>['StudentController@destroy', $student->id]]) !!}
-                        <a href="{{ action('StudentController@edit', $student->id) }}" class="btn">Edit</a>
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger delete-confirm']) !!}
+                        <a href="{{ action('StudentController@edit', $student->id) }}" class="btn pull-right">Edit</a>
+                        {!! Form::submit('Delete', ['class' => 'btn btn-danger delete-confirm pull-right']) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>

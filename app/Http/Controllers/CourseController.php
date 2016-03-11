@@ -34,7 +34,7 @@ class CourseController extends Controller
         return view('courses.edit', compact('course'));
     }
 
-    public function update($id, Requests\StudentRequest $request) {
+    public function update($id, Requests\CourseRequest $request) {
         $course = Course::findOrFail($id);
         $course->title = $request->title;
         $course->number = $request->number;
