@@ -13,7 +13,9 @@ class Student extends Model
         'first_name',
         'last_name',
         'netid',
-        'nuid'
+        'nuid',
+        'status',
+        'foundation_outstanding'
     ];
 
     protected $dates = [
@@ -24,7 +26,7 @@ class Student extends Model
         'name'
     ];
 
-    public function PlansOfStudy() {
+    public function plansOfStudy() {
         return $this->hasMany('PlanOfStudy');
     }
 

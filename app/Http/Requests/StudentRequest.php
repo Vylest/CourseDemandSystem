@@ -27,7 +27,9 @@ class StudentRequest extends Request
             'first_name' => 'required|min:3',
             'last_name' => 'required|min:3',
             'netid' => 'required|unique:students',
-            'nuid' => 'required|numeric|unique:students'
+            'nuid' => 'required|numeric|between:10000000,99999999|unique:students',
+            'status' => 'required',
+            'foundation_outstanding' => 'boolean'
         ];
     }
 }

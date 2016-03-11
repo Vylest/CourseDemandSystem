@@ -12,7 +12,8 @@ class Program extends Model
     protected $fillable = [
         'name',
         'type',
-        'career'
+        'career',
+        'credits_required'
     ];
 
     protected $dates = [

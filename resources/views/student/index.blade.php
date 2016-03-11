@@ -10,6 +10,7 @@
                 <th>Last Name</th>
                 <th>NetID</th>
                 <th>NUID</th>
+                <th>Status</th>
                 <th>Operations</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                     <td>{{ $student->last_name }}
                     <td>{{ $student->netid }}</td>
                     <td>{{ $student->nuid }}</td>
+                    <td>{{ $student->status }}</td>
                     <td>
                         {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
                                    'action'=>['StudentController@destroy', $student->id]]) !!}

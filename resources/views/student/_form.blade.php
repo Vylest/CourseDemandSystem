@@ -22,6 +22,17 @@
 
 <div class="row">
 	<div class="span3">
+		{!! Form::label('status') !!}
+		{!! Form::select('status', ['Incoming' => 'Incoming', 'Active' => 'Active', 'Inactive' => 'Inactive', 'Probation' => 'Probation']) !!}
+	</div>
+	<div class="span3">
+		{!! Form::label('foundation_outstanding', 'Outstanding Foundation Classes') !!}
+		<label>{!! Form::checkbox('foundation_outstanding') !!} Yes</label>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span3">
 	    {!! Form::submit('Save', ['class'=>'btn btn-cta-red btn-large']) !!}
 	</div>
 </div>

@@ -13,7 +13,8 @@ class PlanOfStudy extends Model
 
     protected $fillable = [
         'student_id',
-        'program_id'
+        'program_id',
+        'graduated'
     ];
 
     protected $dates = [
