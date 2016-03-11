@@ -29,8 +29,8 @@ class StudentController extends Controller
         $student = new Student();
         $student->first_name = $request->first_name;
         $student->last_name = $request->last_name;
-        $student->net_id = $request->net_id;
-        $student->nu_id = $request->nu_id;
+        $student->netid = $request->netid;
+        $student->nuid = $request->nuid;
         $student->save();
 
         return redirect()->route('student.index')->with('message', 'Successfully created student record');
@@ -45,8 +45,8 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->first_name = $request->first_name;
         $student->last_name = $request->last_name;
-        $student->net_id = $request->net_id;
-        $student->nu_id = $request->nu_id;
+        $student->netid = $request->netid;
+        $student->nuid = $request->nuid;
         $student->update();
 
     }
