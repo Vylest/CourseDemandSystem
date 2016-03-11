@@ -18,22 +18,18 @@ class StudentController extends Controller
 
     public function show($id) {
         $student = Student::findOrFail($id);
-        return view('student.show', comapct('student'));
+        return view('student.show', compact('student'));
     }
 
     public function create() {
         return view('student.create');
     }
 
-    public function store($request) {
-        $student = new Student();
-        $student->first_name = $request->first_name;
-        $student->last_name = $request->last_name;
-        $student->netid = $request->netid;
-        $student->nuid = $request->nuid;
+    public function store(Requests\StudentRequest $request) {
+        $student = new Student($request->all());
         $student->save();
 
-        return redirect()->route('student.index')->with('message', 'Successfully created student record');
+        return redirect()->route('students.index')->with('message', 'Successfully created student record');
     }
 
     public function edit($id) {
@@ -41,20 +37,17 @@ class StudentController extends Controller
         return view('student.edit', compact('student'));
     }
 
-    public function update($id, $request) {
+    public function update(Requests\StudentRequest $request, $id) {
         $student = Student::findOrFail($id);
-        $student->first_name = $request->first_name;
-        $student->last_name = $request->last_name;
-        $student->netid = $request->netid;
-        $student->nuid = $request->nuid;
-        $student->update();
+        $student->update($request->all());
 
+        return redirect()->route('students.index')->with('message', 'Successfully updated student!');
     }
 
     public function destroy($id) {
         $student = Student::findOrFail($id);
         $student->delete();
-        return redirect()->route('student.index')->with('message', 'Student record successfully deleted');
+        return redirect()->route('students.index')->with('message', 'Student record successfully deleted');
     }
 
     public function manage() {

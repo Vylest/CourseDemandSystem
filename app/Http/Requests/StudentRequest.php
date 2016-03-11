@@ -26,8 +26,8 @@ class StudentRequest extends Request
         return [
             'first_name' => 'required|min:3',
             'last_name' => 'required|min:3',
-            'net_id' => 'required|unique:students',
-            'nu_id' => 'required|unique:students'
+            'netid' => 'required|unique:students',
+            'nuid' => 'required|numeric|unique:students'
         ];
     }
 }

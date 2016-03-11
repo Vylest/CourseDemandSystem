@@ -20,9 +20,9 @@
                     <td>{{ $student->nu_id }}</td>
                     <td>
                         {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
-                                   'action'=>['StudentContdoller@destdoy', $student->id]]) !!}
-                        <a href="{{ action('StudentContdoller@edit', $student->id) }}" class="btn btn-primary">Edit</a>
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                   'action'=>['StudentController@destroy', $student->id]]) !!}
+                            <a href="{{ action('StudentController@edit', $student->id) }}" class="btn btn-cta-red">Edit</a>
+                            {!! Form::submit('Delete', ['class' => 'btn']) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>
