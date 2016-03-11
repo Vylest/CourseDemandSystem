@@ -116,7 +116,7 @@
     <div role="main">
         <div id="hero">
             <div class="inner-content">
-                <h1>Course Demand System</h1>
+                <h1>@yield('page_title')</h1>
             </div>
         </div>
         <div id="breadcrumbs">

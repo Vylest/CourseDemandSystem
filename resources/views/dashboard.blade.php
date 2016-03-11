@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page_title') Dashboard @endsection
+
 @section('content')
     @include('partials._flash')
     @include('partials._errors')

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page_title')Students @endsection
+
 @section('content')
     <table class="gridder">
         <thead>
