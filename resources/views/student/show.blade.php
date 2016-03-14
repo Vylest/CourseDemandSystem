@@ -39,7 +39,7 @@
             @foreach($student->plansOfStudy as $plan)
                 <tr>
                     <td>{{ $plan->name }}</td>
-                    @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('user'))
+                    @if(!Auth::user()->hasRole('read-only'))
                         <td>
                             {!! Form::model($plan, ['method'=>'delete', 'class'=>'delete_confirm',
 		                               'action'=>['PlanOfStudyController@destroy', $plan->id]]) !!}

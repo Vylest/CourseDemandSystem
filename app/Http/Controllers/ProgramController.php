@@ -35,10 +35,14 @@ class ProgramController extends Controller
     }
 
     public function update($id, Requests\ProgramRequest $request) {
-
+        $program = Program::findOrFail($id);
+        $program->update($request->all());
+        return redirect()->route('programs.index')->with('success', 'Program successfully updated!');
     }
 
     public function destroy($id) {
-
+        $program = Program::findOrFail($id);
+        $program->delete();
+        return redirect()->route('programs.index')->with('success', 'Program successfully deleted!');
     }
 }

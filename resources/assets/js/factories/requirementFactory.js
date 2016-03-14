@@ -3,4 +3,3 @@ app.factory("requirementFields", function() {
     requirementFields.data = [];
     return requirementFields;
 });
-

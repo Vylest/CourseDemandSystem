@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
-@section('page_title'){{ $program->name }}@endsection
+@section('page_title')@endsection
 @section('content')
+    <h3>{{ $program->name }}</h3>
     <div class="row">
         <div class="span6">
             <table class="gridder">
                 <thead>
                     <tr>
                         <th>Details</th>
+                        <th><span class="pull-right">@include('partials._operations', ['model'=>$program,'controller'=>'ProgramController'])</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,26 +28,26 @@
                 </tbody>
             </table>
         </div>
-        <div class="span2">
-            {!! Form::model($program, ['method'=>'delete', 'class'=>'delete_confirm',
-		                               'action'=>['ProgramController@destroy', $program->id]]) !!}
-            <a href="{{ action('ProgramController@edit', $program->id) }}" class="btn btn-cta-red">Edit</a>
-            {!! Form::submit('Delete', ['class' => 'btn']) !!}
-            {!! Form::close() !!}
+    </div>
+    @if ( !is_null($program->requirements))
+        <div class="row">
+            <h3>Requirements</h3>
+            <table class="gridder">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($program->requirements as $requirement)
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-    </div>
-    <div class="row">
-        <h3>Required Courses</h3>
-        <table class="gridder">
-            <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Type</th>
-                </tr>
-            </thead>
-            <tbody>
-                TODO foreach each requirement
-            </tbody>
-        </table>
-    </div>
+    @endif
 @endsection

@@ -19,10 +19,10 @@ class Course extends Model
     ];
 
     public function degreeRequirements() {
-        return $this->hasMany('DegreeRequirement');
+        return $this->belongsToMany('DegreeRequirement');
     }
 
     public function enrollments() {
-        return $this->hasMany('Enrollment');
+        return $this->belongsToMany('Enrollment');
     }
 }

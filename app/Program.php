@@ -21,7 +21,7 @@ class Program extends Model
     ];
 
     public function plansOfStudy() {
-        return $this->hasMany('PlanofStudy');
+        return $this->belongsToMany('PlanofStudy');
     }
 
     public function degreeRequirements() {

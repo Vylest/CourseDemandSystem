@@ -24,6 +24,6 @@ class DegreeRequirement extends Model
     }
 
     public function course() {
-        return $this->belongsTo('Course');
+        return $this->hasOne('Course');
     }
 }

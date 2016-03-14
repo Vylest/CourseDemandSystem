@@ -1,4 +1,4 @@
-app.controller('RequirementsController',['$scope', '$location', '$resource', 'requirementFields',
+app.controller('RequirementsController', ['$scope', '$location', '$resource', 'requirementFields',
     function($scope, $location, $resource, requirementFields) {
         $scope.requirementFields = requirementFields;
 
@@ -14,11 +14,11 @@ app.controller('RequirementsController',['$scope', '$location', '$resource', 're
         $scope.requirementCounter = 1;
 
         $scope.addRequirementField = function() {
-          requirementFields.data.push({
-              "id" : $scope.requirementCounter,
-              "name" : $scope.newItemName,
-              "type" : $scope.newItemType
-          });
+            requirementFields.data.push({
+                "id": $scope.requirementCounter,
+                "name": $scope.newItemName,
+                "type": $scope.newItemType
+            });
             $scope.requirementCounter++;
             $scope.newItemName = '';
             $scope.newItemType = '';
