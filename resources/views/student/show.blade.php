@@ -27,6 +27,30 @@
 		    {!! Form::close() !!}
 		</div>
 	</div>
-
-    <h3>{{ str_plural('Plan', $student->plansOfStudy->count()) }} of Study</h3>
+    @if($student->plansOfStudy->count() > 0)
+        <h3>{{ str_plural('Plan', $student->plansOfStudy->count()) }} of Study</h3>
+        <table class="gridder">
+            <thead>
+            <tr>
+                <th>Plan</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($student->plansOfStudy as $plan)
+                <tr>
+                    <td>{{ $plan->name }}</td>
+                    @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('user'))
+                        <td>
+                            {!! Form::model($plan, ['method'=>'delete', 'class'=>'delete_confirm',
+		                               'action'=>['PlanOfStudyController@destroy', $plan->id]]) !!}
+                            <a href="{{ action('PlanOfStudyController@edit', $plan->id) }}" class="btn btn-cta-red">Edit</a>
+                            {!! Form::submit('Delete', ['class' => 'btn']) !!}
+                            {!! Form::close() !!}
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @endif
 @endsection

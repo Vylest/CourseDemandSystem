@@ -3,41 +3,25 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
-
-
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-    <!-- InstanceBeginEditable name="doctitle" -->
     <title>MavPlan | University of Nebraska Omaha</title>
     <meta content="" name="description"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-
     <link href="//www.unomaha.edu/_files/css/default-001-header-footer.css" rel="stylesheet"/>
     <script src="//www.unomaha.edu/_files/js/modernizr-2.5.3.min.js"></script>
     <script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
     <!-- USER SCRIPTS -->
-
     <script src="{{ asset('/js/vendor.js') }}"></script>
     <script src="{{ asset('/js/angular.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
     <!-- /USER SCRIPTS -->
-
     <link href="//www.unomaha.edu/_files/css/colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//www.ist.unomaha.edu/css/template_fixes.css">
-    <style type="text/css">
-        /* USER STYLES */
-
-
-
-
-        /* /USER STYLES */
-
-    </style>
     <link href="{{ asset('css/app.css') }}" media="screen" rel="stylesheet" type="text/css"/>
     @yield('header')
 </head>
-
 <body>
 <div class="subsite" id="content">
     <nav></nav>
@@ -205,7 +189,7 @@
             <div class="row-fluid">
                 <div class="span9"><a href="/" id="footer-logo">University of Nebraska Omaha</a>
                     <p>University of Nebraska Omaha, 6001 Dodge Street, Omaha, NE 68182</p>
-                    <p>&#169; 2014 | <a href="http://emergency.unomaha.edu/">Emergency Information</a> <span class="footer-alert">Alert</span></p>
+                    <p>&#169; {{ date('Y') }} | <a href="http://emergency.unomaha.edu/">Emergency Information</a> <span class="footer-alert">Alert</span></p>
                 </div>
             </div>
         </div>
