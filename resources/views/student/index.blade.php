@@ -18,7 +18,7 @@
             @foreach($students as $student)
                 <tr>
                     <td>{{ $student->first_name }}</td>
-                    <td>{{ $student->last_name }}
+                    <td>{{ $student->last_name }}</td>
                     <td>{{ $student->netid }}</td>
                     <td>{{ $student->nuid }}</td>
                     <td>{{ $student->status }}</td>

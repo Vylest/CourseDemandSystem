@@ -3,6 +3,7 @@
  */
 // Activate deletion confirmation
 $(document).ready(function() {
+
     $('.delete-confirm').on('submit', function() {
         return confirm('Are you sure you want to delete this?');
     });
@@ -12,4 +13,5 @@ $(document).ready(function() {
             $(this).remove();
         });
     }, 3000);
+
 });

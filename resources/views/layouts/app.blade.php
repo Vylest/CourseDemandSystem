@@ -102,7 +102,7 @@
                                 <li><a href="{{ action('UserController@logout') }}">Log Out</a></li>
                             </ul>
                         </li>
-                        @if (Auth::user()->account_type == 2)
+                        @if (Auth::user()->hasRole('admin'))
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"> </b></a>
                                 <ul class="dropdown-menu">

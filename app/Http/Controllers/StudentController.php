@@ -29,7 +29,7 @@ class StudentController extends Controller
         $student = new Student($request->all());
         $student->save();
 
-        return redirect()->route('students.index')->with('message', 'Successfully created student record');
+        return redirect()->route('students.index')->with('success', 'Successfully created student record!');
     }
 
     public function edit($id) {
@@ -42,13 +42,13 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->update($request->all());
 
-        return redirect()->route('students.index')->with('message', 'Successfully updated student!');
+        return redirect()->route('students.index')->with('success', 'Successfully updated student!');
     }
 
     public function destroy($id) {
         $student = Student::findOrFail($id);
         $student->delete();
-        return redirect()->route('students.index')->with('message', 'Student record successfully deleted');
+        return redirect()->route('students.index')->with('success', 'Student record successfully deleted!');
     }
 
     public function manage() {

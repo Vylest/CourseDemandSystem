@@ -50,7 +50,7 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::resource('programs', 'ProgramController');
 
         // plan of study
-        Route::resource('students.plans', 'PlanOfStudyController');
+        Route::resource('students.plans', 'PlanOfStudyController', ['parameters'=>'singular']);
 
 
         Route::group(['middleware' => ['id']], function ($id) {

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
+@section('page_title') User Administration @endsection
 @section('content')
     @include('partials._flash')
     @include('partials._errors')
     <div class="panel">
-        <h3>User Administration</h3>
         <div class="panel-body">
             <table class="gridder">
                 <thead>
@@ -25,7 +25,7 @@
                         <td><a href="{{ action('UserController@edit', [$user->id]) }}">{{ $user->last_name }}</a></td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->nu_id }}</td>
-                        <td>{{ $roles[$user->account_type] }}</td>
+                        <td>{{ $user->account_type }}</td>
                         <td>
                             {!! Form::model($user, [
                                 'method' => 'DELETE',

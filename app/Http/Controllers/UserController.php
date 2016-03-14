@@ -22,8 +22,7 @@ class UserController extends Controller
     public function index() {
         $loggedInUser = Auth::user();
         $users = User::all();
-        $roles = ['read-only','user','admin'];
-           return view('user.index', compact('users','roles'));
+           return view('user.index', compact('users'));
     }
 
     public function show($id) {
@@ -45,9 +44,9 @@ class UserController extends Controller
         $nuId = explode('@', $request->email);
         $user->nu_id = $nuId[0];
         $user->password = bcrypt($request->password);
-        $user->type = $request->type;
+        $user->account_type = $request->account_type;
         $user->save();
-        return redirect()->route('user.index')->with('message', 'Your user was created.');
+        return redirect()->route('users.index')->with('success', 'Your user was created.');
     }
 
     public function edit($id) {
@@ -67,7 +66,7 @@ class UserController extends Controller
             }
             $user->account_type = $request->account_type;
             $user->update();
-            return redirect()->route('user.index')->with('message', 'User updated successfully.');
+            return redirect()->route('users.index')->with('success', 'User updated successfully.');
         } else {
             return redirect()->back()->withErrors('Password does not match the confirmation');
 }
@@ -77,7 +76,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if($user->delete()) {
-            return redirect()->route('user.index')->with('message', 'User Deleted!');
+            return redirect()->route('users.index')->with('success', 'User Deleted!');
         } else {
             return redirect()->back()->withErrors(['error', 'Account Deletion Failed!']);
         }
@@ -89,7 +88,7 @@ class UserController extends Controller
 
     public function logout() {
         Auth::logout();
-        return redirect('auth.login')->with('message', 'Successfully Logged Out!');
+        return redirect('auth.login')->with('success', 'Successfully Logged Out!');
     }
 
     public function editAccount($id)
@@ -123,7 +122,7 @@ class UserController extends Controller
         if (Hash::check($old_password, Auth::user()->password)) {
             $user->password = bcrypt($request->password);
             $user->update();
-            return redirect()->route('user.account', [$user->id])->with('success', true)->with('message', 'Password updated.');
+            return redirect()->route('user.account', [$user->id])->with('success', true)->with('success', 'Password updated!');
         } else {
             return Redirect::back()->withErrors('Password incorrect');
         }
@@ -137,7 +136,7 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->update();
-        return redirect()->route('user.account', [$user->id])->with('message', 'User updated successfully.');
+        return redirect()->route('user.account', [$user->id])->with('success', 'User updated successfully!');
     }
 
 

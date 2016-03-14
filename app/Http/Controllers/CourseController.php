@@ -26,7 +26,7 @@ class CourseController extends Controller
     public function store(Requests\CourseRequest $request) {
         $course = new Course(['title' => $request->title,'number' => $request->number]);
         $course->save();
-        return redirect()->route('courses.index')->with('message', 'The course has been successfully created');
+        return redirect()->route('courses.index')->with('success', 'The course has been successfully created!');
     }
 
     public function edit($id) {
@@ -39,12 +39,12 @@ class CourseController extends Controller
         $course->title = $request->title;
         $course->number = $request->number;
         $course->save();
-        return redirect()->route('courses.index')->with('message', 'The course has been successfully updated');
+        return redirect()->route('courses.index')->with('success', 'The course has been successfully updated!');
     }
 
     public function destroy($id) {
         $course = Course::findOrFail($id);
         $course->delete();
-        return redirect()->route('courses.index')->with('message', 'The course has been successfully deleted');
+        return redirect()->route('courses.index')->with('success', 'The course has been successfully deleted!');
     }
 }

@@ -21,6 +21,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
+
+    // methods
+    public function hasRole($role) {
+        return User::where('account_type', $role)->get();
+    }
 }
