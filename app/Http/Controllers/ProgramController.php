@@ -24,14 +24,7 @@ class ProgramController extends Controller
         $requirements = DegreeRequirement::where(['program_id'=>$program->id])->orderBy('type', 'asc')->get();
         $requirementCourseIds = $requirements->pluck('course_id')->toArray();
         $courses = Course::all();
-        //$courses = DB::table('courses')->whereIn('id', $requirementCourseIds)->get();
 
-       // dd($courses[1]);
-//        foreach($requirements as $r) {
-//
-//
-//            dd(Course::where(['id'=>$r->course_id])->get());
-//        }
 
         return view('programs.show', compact('program', 'requirements', 'courses'));
     }

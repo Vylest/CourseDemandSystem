@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\DegreeRequirement;
 use App\Program;
+use App\Course;
 
 class RequirementController extends Controller
 {
@@ -16,13 +16,16 @@ class RequirementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($program)
+    public function index($programId)
     {
         // get requirements for program id
-        $program = Program::findOrFail($program);
+        $program = Program::findOrFail($programId);
         $requirements = DegreeRequirement::where(['program_id'=>$program->id])->get();
         $requirementsCourseIds = array_pluck($requirements, 'course_id');
-        dd($requirementsCourseIds);
+        $courses = Course::all();
+
+        return view('requirements.index', compact('program', 'requirements', 'courses'));
+        //dd($requirementsCourseIds);
     }
 
     /**
@@ -30,9 +33,11 @@ class RequirementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($programId)
     {
-        //
+        $program = Program::findOrFail($programId);
+        $courses = Course::all();
+        return view('requirements.create', compact('program', 'courses'));
     }
 
     /**
@@ -41,7 +46,7 @@ class RequirementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($program, Request $request)
     {
         //
     }
@@ -52,7 +57,7 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($program, $id)
     {
         //
     }
@@ -63,7 +68,7 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($program, $id)
     {
         //
     }
@@ -75,7 +80,7 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $program, $id)
     {
         //
     }
@@ -86,7 +91,7 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($program, $id)
     {
         //
     }
