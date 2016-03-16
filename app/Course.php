@@ -18,11 +18,13 @@ class Course extends Model
         'deleted_at'
     ];
 
-    public function degreeRequirements() {
+    public function degreeRequirements()
+    {
         return $this->belongsToMany('DegreeRequirement');
     }
 
-    public function enrollments() {
+    public function enrollments()
+    {
         return $this->belongsToMany('Enrollment');
     }
 }

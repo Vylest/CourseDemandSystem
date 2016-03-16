@@ -8,7 +8,6 @@ use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class Enrollment extends Model
 {
     use SoftDeletes;
@@ -29,21 +28,23 @@ class Enrollment extends Model
         'completed' => 'boolean'
     ];
 
-    public function course() {
+    public function course()
+    {
         return $this->belongsTo('Course');
     }
 
-    public function planOfStudy() {
+    public function planOfStudy()
+    {
         return $this->belongsTo('PlanOfStudy');
     }
 
     // mutators
-    public function getCreatedAtAttribute($date) {
+    public function getCreatedAtAttribute($date)
+    {
         if (isset($date)) {
             return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('m/d/Y');
         } else {
             return null;
         }
     }
-
 }

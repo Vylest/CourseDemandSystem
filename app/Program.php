@@ -20,11 +20,13 @@ class Program extends Model
         'deleted_at'
     ];
 
-    public function plansOfStudy() {
+    public function plansOfStudy()
+    {
         return $this->belongsToMany('PlanofStudy');
     }
 
-    public function degreeRequirements() {
+    public function degreeRequirements()
+    {
         return $this->hasMany('DegreeRequirement');
     }
 }

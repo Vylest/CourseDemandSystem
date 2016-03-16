@@ -6,6 +6,7 @@
     "babelify": "*",
     "browserify": "~9.0.7",
     "gulp-jsbeautifier": "*",
+    "gulp-phpcbf": "*",
     "gulp-watchify": "*",
     "strictify": "^0.2.0",
     "laravel-elixir": "*"

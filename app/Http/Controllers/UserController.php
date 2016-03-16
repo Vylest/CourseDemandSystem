@@ -19,22 +19,26 @@ class UserController extends Controller
 //        $this->middleware('admin', ['only'=>['create','edit','update','destroy','store']]);
 //    }
 
-    public function index() {
+    public function index()
+    {
         $loggedInUser = Auth::user();
         $users = User::all();
            return view('user.index', compact('users'));
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $user = User::where('id', $id)->first();
         return view('user.show', compact('user'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('user.create');
     }
 
-    public function store(Requests\UserCreateRequest $request) {
+    public function store(Requests\UserCreateRequest $request)
+    {
         $user = new User;
 
 
@@ -49,19 +53,21 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Your user was created.');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $user = User::findOrFail($id);
         return view('user.edit', compact('user'));
     }
 
-    public function update($id, Requests\UserEditRequest $request) {
+    public function update($id, Requests\UserEditRequest $request)
+    {
         $user = User::findOrFail($id);
 
-        if($request->password == $request->password_confirmation) {
+        if ($request->password == $request->password_confirmation) {
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->email = $request->email;
-            if($request->password != "" and $request->password != null) {
+            if ($request->password != "" and $request->password != null) {
                 $user->password = bcrypt($request->password);
             }
             $user->account_type = $request->account_type;
@@ -69,24 +75,27 @@ class UserController extends Controller
             return redirect()->route('users.index')->with('success', 'User updated successfully.');
         } else {
             return redirect()->back()->withErrors('Password does not match the confirmation');
-}
+        }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $user = User::findOrFail($id);
 
-        if($user->delete()) {
+        if ($user->delete()) {
             return redirect()->route('users.index')->with('success', 'User Deleted!');
         } else {
             return redirect()->back()->withErrors(['error', 'Account Deletion Failed!']);
         }
     }
 
-    public function login() {
+    public function login()
+    {
         return view('auth.login');
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
         return redirect('auth.login')->with('success', 'Successfully Logged Out!');
     }
@@ -138,6 +147,4 @@ class UserController extends Controller
         $user->update();
         return redirect()->route('user.account', [$user->id])->with('success', 'User updated successfully!');
     }
-
-
 }

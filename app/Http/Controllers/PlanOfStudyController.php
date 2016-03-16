@@ -11,32 +11,39 @@ use App\Program;
 
 class PlanOfStudyController extends Controller
 {
-    public function index($student) {
+    public function index($student)
+    {
         // get all plans of study for the student id
         return Student::findOrFail($student);
     }
 
-    public function show($student, $plan) {
+    public function show($student, $plan)
+    {
         return $student .' '. $plan;
     }
 
-    public function create() {
+    public function create()
+    {
 
     }
 
-    public function store() {
+    public function store()
+    {
 
     }
 
-    public function edit() {
+    public function edit()
+    {
 
     }
 
-    public function update() {
+    public function update()
+    {
 
     }
 
-    public function destroy() {
+    public function destroy()
+    {
 
     }
 }

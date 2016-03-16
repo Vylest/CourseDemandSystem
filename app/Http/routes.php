@@ -73,13 +73,3 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::get('dashboard', 'HomeController@dashboard');
     });
 });
-
-
-
-
-
-
-
-
-
-

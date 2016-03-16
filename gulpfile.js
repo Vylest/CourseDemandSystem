@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var prettify = require('gulp-jsbeautifier');
+var phpcbf = require('gulp-phpcbf');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
 var browserify = require('browserify');
@@ -19,6 +20,8 @@ var vendor_js_files = [
     assets_dir + "js/vendor/ng-table.js"
 ];
 
+
+// js files
 var angular_js_files = [
     assets_dir + 'js/angular.js'
 ];
@@ -30,10 +33,25 @@ var jsbeautifier_options = {
     }
 };
 
+// php files for php conesniffer
+var php_files = [
+    'app/**/*.php',
+    'config/**/*.php'
+];
+
+//PHPcbf options
+var phpcbf_options = {
+    bin: 'phpcbf',
+    standard: 'PSR2',
+    warningSeverity: 0
+};
+
 var watch_config = {
     less: assets_dir + 'less/app.less',
     jsbeautify: [assets_dir + 'js/**/*.js', '!' + assets_dir + 'js/{vendor,vendor/**}'],
-    scripts: assets_dir + 'js/**/*.js'
+    scripts: assets_dir + 'js/**/*.js',
+    phpcbf_app: php_files[0],
+    phpcbf_config: php_files[1]
 };
 
 
@@ -83,6 +101,20 @@ gulp.task('angular', function() {
         .pipe(gulp.dest('./public/js'));
 });
 
+gulp.task('phpcbf-app', function() {
+    return gulp.src(php_files[0])
+        .pipe(cache('phpcbf_app'))
+        .pipe(phpcbf(phpcbf_options))
+        .pipe(gulp.dest('app'));
+});
+
+gulp.task('phpcbf-config', function() {
+    return gulp.src(php_files[1])
+        .pipe(cache('phpcbf_config'))
+        .pipe(phpcbf(phpcbf_options))
+        .pipe(gulp.dest('config'));
+});
+
 gulp.task('js', [
     'angular', 'scripts'
 ]);
@@ -91,7 +123,9 @@ gulp.task('default', [
     'less',
     'vendor-scripts',
     'angular',
-    'scripts'
+    'scripts',
+    'phpcbf-app',
+    'phpcbf-config'
 ]);
 
 gulp.task('watch', function() {

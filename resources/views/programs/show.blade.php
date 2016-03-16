@@ -4,12 +4,13 @@
 @section('content')
     <h3>{{ $program->name }}</h3>
     <div class="row">
-        <div class="span6">
+        <div class="span8">
             <table class="gridder">
                 <thead>
                     <tr>
                         <th>Details</th>
-                        <th><span class="pull-right">@include('partials._operations', ['model'=>$program,'controller'=>'ProgramController'])</span></th>
+                        <th><span class="pull-right">@include('partials._operations', ['model'=>$program,'controller'=>'ProgramController'])
+                                <a href="{{ action('RequirementController@index', $program->id) }}" class="btn">Change Degree Requirements</a></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +30,7 @@
             </table>
         </div>
     </div>
-    @if ( !is_null($program->requirements))
+    @if ( !is_null($requirements))
         <div class="row">
             <h3>Requirements</h3>
             <table class="gridder">
@@ -40,10 +41,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($program->requirements as $requirement)
+                    @foreach ($requirements as $requirement)
                         <tr>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $courses[$requirement->course_id-1]->number }} - {{ $courses[$requirement->course_id-1]->title }}</td>
+                            <td>{{ $requirement->type ? 'Elective' : 'Required'  }}</td>
                         </tr>
                     @endforeach
                 </tbody>

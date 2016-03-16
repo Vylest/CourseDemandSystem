@@ -25,7 +25,8 @@ class User extends Authenticatable
     ];
 
     // methods
-    public function hasRole($role) {
+    public function hasRole($role)
+    {
         return User::where('account_type', $role)->get();
     }
 }

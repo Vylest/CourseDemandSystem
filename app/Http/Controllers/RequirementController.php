@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\DegreeRequirement;
+use App\Program;
 
 class RequirementController extends Controller
 {
@@ -17,7 +19,10 @@ class RequirementController extends Controller
     public function index($program)
     {
         // get requirements for program id
-
+        $program = Program::findOrFail($program);
+        $requirements = DegreeRequirement::where(['program_id'=>$program->id])->get();
+        $requirementsCourseIds = array_pluck($requirements, 'course_id');
+        dd($requirementsCourseIds);
     }
 
     /**

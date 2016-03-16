@@ -13,6 +13,7 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
+
         Course::create(['title' => 'Composition I', 'number'=>'ENGL 1150']);
         Course::create(['title' => 'Composition II', 'number'=>'ENGL 1160']);
         Course::create(['title' => 'Advance Composition for IS&T', 'number'=>'CIST 3000']);
