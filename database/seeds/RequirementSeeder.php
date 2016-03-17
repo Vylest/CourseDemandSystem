@@ -24,7 +24,7 @@ class RequirementSeeder extends Seeder
 
         for($i=0; $i < $programCount; $i++) {
 
-            for($j=0; $j < floor($courseCount/$programCount); $j++) {
+            for($j=0; $j < floor($courseCount/($programCount/2)); $j++) {
                 DegreeRequirement::create([
                     'type'=>rand(0,1),
                     'program_id'=>$programs[$i]->id,

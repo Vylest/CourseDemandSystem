@@ -70,6 +70,6 @@ Route::group(['middleware' => ['web']], function ($id) {
         });
 
         Route::get('/', 'HomeController@dashboard');
-        Route::get('dashboard', 'HomeController@dashboard');
+        Route::get('dashboard', ['uses'=>'HomeController@dashboard', 'as' => 'dashboard']);
     });
 });

@@ -11,10 +11,11 @@ use App\Program;
 
 class PlanOfStudyController extends Controller
 {
-    public function index($student)
+    public function index($studentId)
     {
-        // get all plans of study for the student id
-        return Student::findOrFail($student);
+        $student = Student::findOrFail($studentId);
+        $plans = PlanOfStudy::where('student_id', $studentId)->get();
+        return view('plans.index', compact('student','plans'));
     }
 
     public function show($student, $plan)

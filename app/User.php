@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -24,9 +25,33 @@ class User extends Authenticatable
         'password', 'remember_token'
     ];
 
+    protected $appends = ['is_admin'];
+
     // methods
     public function hasRole($role)
     {
-        return User::where('account_type', $role)->get();
+        if (User::where('account_type', $role)->value('account_type') == Auth::user()->account_type) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getIsAdminAttribute()
+    {
+        if ($this->attributes['account_type'] == 'admin') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function canEdit()
+    {
+        if ($this->account_type == 'admin' or $this->account_type == 'user') {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

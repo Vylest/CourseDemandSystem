@@ -22,11 +22,9 @@ class ProgramController extends Controller
     {
         $program = Program::findOrFail($id);
         $requirements = DegreeRequirement::where(['program_id'=>$program->id])->orderBy('type', 'asc')->get();
-        $requirementCourseIds = $requirements->pluck('course_id')->toArray();
-        $courses = Course::all();
 
 
-        return view('programs.show', compact('program', 'requirements', 'courses'));
+        return view('programs.show', compact('program', 'requirements'));
     }
 
     public function create()

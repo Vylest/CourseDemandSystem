@@ -1,7 +1,5 @@
 @if (count($errors))
-    <ul class="list-group">
         @foreach($errors->all() as $error)
-            <li class="list-group-item list-group-item-danger" role="alert">{{ $error }}</li>
+            <div class="alert alert-danger alert-dismissible fade in" role="alert"><i class="fa fa-lg fa-ban"></i><button type="button" class="close btn btn-default" data-dismiss="alert" aria-hidden="true">Close</button> {{ $error }}</div>
         @endforeach
-    </ul>
 @endif

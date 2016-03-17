@@ -18,14 +18,6 @@ class RequirementController extends Controller
      */
     public function index($programId)
     {
-        // get requirements for program id
-        $program = Program::findOrFail($programId);
-        $requirements = DegreeRequirement::where(['program_id'=>$program->id])->get();
-        $requirementsCourseIds = array_pluck($requirements, 'course_id');
-        $courses = Course::all();
-
-        return view('requirements.index', compact('program', 'requirements', 'courses'));
-        //dd($requirementsCourseIds);
     }
 
     /**
@@ -36,7 +28,7 @@ class RequirementController extends Controller
     public function create($programId)
     {
         $program = Program::findOrFail($programId);
-        $courses = Course::all();
+        $courses = Course::lists('title','id');
         return view('requirements.create', compact('program', 'courses'));
     }
 
@@ -46,9 +38,12 @@ class RequirementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($program, Request $request)
+    public function store($programId, Request $request)
     {
-        //
+        $program = Program::findOrFail($programId);
+        $requirement = new DegreeRequirement($request->all());
+        $program->degreeRequirements()->save($requirement);
+        return redirect()->route('programs.show', $program->id)->with('success', 'The requirement has been added to the program!');
     }
 
     /**
@@ -68,9 +63,13 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($program, $id)
+    public function edit($program, $reqId)
     {
-        //
+        $requirement = DegreeRequirement::findOrFail($reqId);
+        $programId = Program::where('id',$program)->value('id');
+        $courses = Course::lists('title','id');
+
+        return view('requirements.edit', compact('requirement','courses','programId'));
     }
 
     /**
@@ -80,9 +79,11 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $program, $id)
+    public function update(Request $request, $program, $reqId)
     {
-        //
+        $requirement = DegreeRequirement::findOrFail($reqId);
+        $requirement->update($request->all());
+        return redirect()->route('programs.show', $program)->with('success', 'The requirement has been updated!');
     }
 
     /**
@@ -91,8 +92,10 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($program, $id)
+    public function destroy($program, $reqId)
     {
-        //
+        $requirement = DegreeRequirement::findOrFail($reqId);
+        $requirement->delete();
+        return redirect()->route('programs.show', $program)->with('success', 'The requirement has been deleted!');
     }
 }

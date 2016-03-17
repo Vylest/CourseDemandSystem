@@ -13,6 +13,7 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('courses')->truncate();
 
         Course::create(['title' => 'Composition I', 'number'=>'ENGL 1150']);
         Course::create(['title' => 'Composition II', 'number'=>'ENGL 1160']);
@@ -48,6 +49,26 @@ class CourseSeeder extends Seeder
         Course::create(['title' => 'Intro to Project Management', 'number'=>'ISQA 3910']);
         Course::create(['title' => 'Information Systems Analysis', 'number'=>'ISQA 4110']);
         Course::create(['title' => 'System Design and Implementation', 'number'=>'ISQA 4120']);
-
+        Course::create(['title' => 'Overview of System Development', 'number'=>'ISQA 8040']);
+        Course::create(['title' => 'Data Organization and Storage', 'number'=>'ISQA 8050']);
+        Course::create(['title' => 'Management of Software Development', 'number'=>'ISQA 8210']);
+        Course::create(['title' => 'IT Project Fundamentals', 'number'=>'ISQA 8810']);
+        Course::create(['title' => 'Project Risk Management', 'number'=>'ISQA 8820']);
+        Course::create(['title' => 'Proc Re-Eng with IT', 'number'=>'8196']);
+        Course::create(['title' => 'Advance System Analysis and Design', 'number'=>'ISQA 8220']);
+        Course::create(['title' => 'Independent Research', 'number'=>'ISQA 8900']);
+        Course::create(['title' => 'ISQA Thesis', 'number'=>'ISQA 8990']);
+        Course::create(['title' => 'Managing the IS Function', 'number'=>'ISQA 8420']);
+        Course::create(['title' => 'Application Regression Analysis', 'number'=>'ISQA 8340']);
+        Course::create(['title' => 'Data Warehouse Theory', 'number'=>'ISQA 8700']);
+        Course::create(['title' => 'Information/Data Quality Management', 'number'=>'ISQA 8206']);
+        Course::create(['title' => 'Advance Stat Methods for IT', 'number'=>'ISQA 8156']);
+        Course::create(['title' => 'Multivariate Data Analysis', 'number'=>'ISQA 9130']);
+        Course::create(['title' => 'Business Forecasting', 'number'=>'ECON 8310']);
+        Course::create(['title' => 'Business Intelligence', 'number'=>'ISQA 8016']);
+        Course::create(['title' => 'Decision Support Systems', 'number'=>'ISQA 8736']);
+        Course::create(['title' => 'Data Warehousing/Mining', 'number'=>'CSCI 8350']);
+        Course::create(['title' => 'Seminar in MIS', 'number'=>'ISQA 8080']);
+        Course::create(['title' => 'E-Commerce Security', 'number'=>'ISQA 8530']);
     }
 }

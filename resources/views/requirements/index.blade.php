@@ -4,7 +4,7 @@
 @section('content')
     <h3>{{ $program->name }}</h3>
     <div class="row">
-        <div class="span6">
+        <div class="span60">
             <table class="gridder">
                 <thead>
                 <tr>
