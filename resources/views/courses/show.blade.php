@@ -6,6 +6,19 @@
     <h3>{{ $course->number }} - {{ $course->title }}</h3>
     <hr>
     <table class="gridder">
-        TODO: programs that have this class here, and whether it is elective or required
+        <thead>
+        <tr>
+            <th>Program</th>
+            <th>Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($programs as $program)
+            <tr>
+                <td><a href="{{ action('ProgramController@show', $program->id) }}">{{ $program->name }}</a></td>
+                <td>{{ $program->type }}</td>
+            </tr>
+        @endforeach
+        </tbody>
     </table>
 @endsection

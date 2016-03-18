@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Course;
+use App\Program;
 
 class CourseController extends Controller
 {
@@ -18,7 +19,8 @@ class CourseController extends Controller
     public function show($id)
     {
         $course = Course::findOrFail($id);
-        return view('courses.show', compact('course'));
+        $programs = Program::where('id', $course->id)->get();
+        return view('courses.show', compact('course', 'programs'));
     }
 
     public function create()

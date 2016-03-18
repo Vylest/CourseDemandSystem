@@ -77,6 +77,9 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ action('CourseController@index') }}">View Courses</a></li>
+                                @if(Auth::user()->is_admin)
+                                    <li><a href="{{ action('CourseController@create') }}">Add a Course</a></li>
+                                @endif
                             </ul>
                         </li>
                         <li class="dropdown">

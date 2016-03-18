@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Student;
+use App\PlanOfStudy;
 
 class StudentController extends Controller
 {

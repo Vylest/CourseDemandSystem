@@ -22,8 +22,6 @@ class ProgramController extends Controller
     {
         $program = Program::findOrFail($id);
         $requirements = DegreeRequirement::where(['program_id'=>$program->id])->orderBy('type', 'asc')->get();
-
-
         return view('programs.show', compact('program', 'requirements'));
     }
 

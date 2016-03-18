@@ -6,6 +6,16 @@
 	<div class="row">
 		<div class="span6">
 			<table class="gridder">
+                <thead>
+                <tr>
+                    <th>Student Information</th>
+                    <th>
+                        @if(!Auth::user()->hasRole('read-only'))
+                            @include('partials._operations', ['model'=>$student,'controller'=>'StudentController'])
+                        @endif
+                    </th>
+                </tr>
+                </thead>
 				<tbody>
 					<tr>
 						<td>Status</td>
@@ -18,13 +28,9 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="span4"></div>
-		<div class="span2">
-		    {!! Form::model($student, ['method'=>'delete', 'class'=>'delete_confirm',
-		                               'action'=>['StudentController@destroy', $student->id]]) !!}
-		        <a href="{{ action('StudentController@edit', $student->id) }}" class="btn btn-cta-red">Edit</a>
-		        {!! Form::submit('Delete', ['class' => 'btn']) !!}
-		    {!! Form::close() !!}
+		<div class="span2"></div>
+		<div class="span4">
+
 		</div>
 	</div>
     @if($student->plansOfStudy->count() > 0)
@@ -33,17 +39,23 @@
             <thead>
             <tr>
                 <th>Plan</th>
+                @if(Auth::user()->canEdit())
+                    <th>
+                        Operations
+                        <a class="btn pull-right" href="{{ action('PlanOfStudyController@create', $student->id) }}"><i class="fa fa-plus"></i> Add a Plan of Study</a>
+                    </th>
+                @endif
             </tr>
             </thead>
             <tbody>
             @foreach($student->plansOfStudy as $plan)
                 <tr>
-                    <td>{{ $plan->name }}</td>
-                    @if(!Auth::user()->hasRole('read-only'))
+                    <td>{{ $plan->program->name }}</td>
+                    @if(Auth::user()->canEdit())
                         <td>
                             {!! Form::model($plan, ['method'=>'delete', 'class'=>'delete_confirm',
-		                               'action'=>['PlanOfStudyController@destroy', $plan->id]]) !!}
-                            <a href="{{ action('PlanOfStudyController@edit', $plan->id) }}" class="btn btn-cta-red">Edit</a>
+		                               'action'=>['PlanOfStudyController@destroy', $student->id, $plan->id]]) !!}
+                            <a href="{{ action('PlanOfStudyController@edit', [$student->id, $plan->id]) }}" class="btn btn-cta-red">Edit</a>
                             {!! Form::submit('Delete', ['class' => 'btn']) !!}
                             {!! Form::close() !!}
                         </td>

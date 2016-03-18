@@ -28,7 +28,7 @@ class RequirementController extends Controller
     public function create($programId)
     {
         $program = Program::findOrFail($programId);
-        $courses = Course::lists('title','id');
+        $courses = Course::lists('title', 'id');
         return view('requirements.create', compact('program', 'courses'));
     }
 
@@ -66,10 +66,10 @@ class RequirementController extends Controller
     public function edit($program, $reqId)
     {
         $requirement = DegreeRequirement::findOrFail($reqId);
-        $programId = Program::where('id',$program)->value('id');
-        $courses = Course::lists('title','id');
+        $programId = Program::where('id', $program)->value('id');
+        $courses = Course::lists('title', 'id');
 
-        return view('requirements.edit', compact('requirement','courses','programId'));
+        return view('requirements.edit', compact('requirement', 'courses', 'programId'));
     }
 
     /**

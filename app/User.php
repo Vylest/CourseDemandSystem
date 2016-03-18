@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password', 'remember_token'
     ];
 
-    protected $appends = ['is_admin'];
+    protected $appends = ['is_admin','is_user'];
 
     // methods
     public function hasRole($role)

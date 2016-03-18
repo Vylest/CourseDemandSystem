@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials._flash')
-    @include('partials._errors')
     <h3>Account Management</h3>
     <hr>
     <ul class="standard">

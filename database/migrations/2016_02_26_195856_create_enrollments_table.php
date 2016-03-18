@@ -15,7 +15,6 @@ class CreateEnrollmentsTable extends Migration
         Schema::create('enrollments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('credits');
-            $table->string('semester');
             $table->boolean('completed');
             $table->integer('plan_of_study_id')->references('id')->on('plans_of_study')->unsigned();
             $table->integer('course_id')->references('id')->on('courses')->unsigned();

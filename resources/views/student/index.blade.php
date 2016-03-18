@@ -6,8 +6,7 @@
     <table class="gridder">
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Name</th>
                 <th>NetID</th>
                 <th>NUID</th>
                 <th>Status</th>
@@ -19,8 +18,7 @@
         <tbody>
             @foreach($students as $student)
                 <tr>
-                    <td>{{ $student->first_name }}</td>
-                    <td>{{ $student->last_name }}</td>
+                    <td><a href="{{ action('StudentController@show', $student->id) }}">{{ $student->first_name }} {{ $student->last_name }}</a></td>
                     <td>{{ $student->netid }}</td>
                     <td>{{ $student->nuid }}</td>
                     <td>{{ $student->status }}</td>

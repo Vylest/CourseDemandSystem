@@ -38,6 +38,10 @@ class Enrollment extends Model
         return $this->belongsTo('PlanOfStudy');
     }
 
+    public function semester() {
+        return $this->hasOne('Semester');
+    }
+
     // mutators
     public function getCreatedAtAttribute($date)
     {
