@@ -50,11 +50,13 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::resource('programs', 'ProgramController');
 
         //program requirements
-        Route::resource('programs.requirements', 'RequirementController', ['parameters'=>'singular']);
+        Route::resource('programs.requirements', 'RequirementController', ['parameters'=>'singular', 'except'=>['show','index']]);
 
         // plan of study
-        Route::resource('students.plans', 'PlanOfStudyController', ['parameters'=>'singular']);
+        Route::resource('students.plans', 'PlanOfStudyController', ['parameters'=>'singular', 'except'=>['index']]);
 
+        // semesters
+        Route::resource('semesters', 'SemesterController', ['except'=>['show']]);
 
         Route::group(['middleware' => ['id']], function ($id) {
             Route::get('users/{id}/editAccount', 'UserController@editAccount');

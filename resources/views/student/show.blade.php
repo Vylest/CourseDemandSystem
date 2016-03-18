@@ -64,5 +64,7 @@
             @endforeach
             </tbody>
         </table>
+    @else
+        <a class="btn" href="{{ action('PlanOfStudyController@create', $student->id) }}"><i class="fa fa-plus"></i> Add a Plan of Study</a>
     @endif
 @endsection

@@ -4,6 +4,6 @@
 
 @section('content')
     {!! Form::open(['action'=>['PlanOfStudyController@store', $student->id]]) !!}
-        @include('plans._form')
+        @include('plans._form', ['semester'=>$semesters])
     {!! Form::close() !!}
 @endsection
