@@ -58,6 +58,9 @@ Route::group(['middleware' => ['web']], function ($id) {
         // semesters
         Route::resource('semesters', 'SemesterController', ['except'=>['show']]);
 
+        // admin panel
+        Route::get('admin', 'HomeController@admin');
+
         Route::group(['middleware' => ['id']], function ($id) {
             Route::get('users/{id}/editAccount', 'UserController@editAccount');
             Route::patch('users/{id}/updateAccount', 'UserController@updateAccount');

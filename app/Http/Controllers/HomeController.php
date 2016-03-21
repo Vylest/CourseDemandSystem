@@ -6,6 +6,8 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Program;
+
 class HomeController extends Controller
 {
     /**
@@ -25,11 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home.home');
     }
 
     public function dashboard()
     {
-        return view('dashboard');
+        $programs = Program::recent()->get();
+        return view('home.dashboard', compact('programs'));
+    }
+
+    public function admin()
+    {
+        return view('home.admin');
     }
 }

@@ -7,21 +7,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Semester extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = [
-
-    ];
-
-    protected $dates = [
-        'deleted_at',
+        'semester',
+        'completed',
     ];
 
     protected $casts = [
-      'completed' => 'boolean'
+        //'completed' => 'boolean',
     ];
 
-    public function enrollments() {
+    public function enrollments()
+    {
         return $this->belongsToMany('enrollment');
     }
 }

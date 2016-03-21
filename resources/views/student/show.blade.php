@@ -50,7 +50,7 @@
             <tbody>
             @foreach($student->plansOfStudy as $plan)
                 <tr>
-                    <td>{{ $plan->program->name }}</td>
+                    <td><a href="{{ action('PlanOfStudyController@show', [$student->id, $plan->id]) }}">{{ $plan->program->name }}</a></td>
                     @if(Auth::user()->canEdit())
                         <td>
                             {!! Form::model($plan, ['method'=>'delete', 'class'=>'delete_confirm',

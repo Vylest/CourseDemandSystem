@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\DegreeRequirement;
 use App\Program;
 use App\Course;
+use Carbon\Carbon;
 
 class RequirementController extends Controller
 {
@@ -43,6 +44,8 @@ class RequirementController extends Controller
         $program = Program::findOrFail($programId);
         $requirement = new DegreeRequirement($request->all());
         $program->degreeRequirements()->save($requirement);
+        $program->updated_at = Carbon::now();
+        $program->save();
         return redirect()->route('programs.show', $program->id)->with('success', 'The requirement has been added to the program!');
     }
 
@@ -79,8 +82,11 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $program, $reqId)
+    public function update(Request $request, $programId, $reqId)
     {
+        $program = Program::findOrFail($programId);
+        $program->updated_at = Carbon::now();
+        $program->save();
         $requirement = DegreeRequirement::findOrFail($reqId);
         $requirement->update($request->all());
         return redirect()->route('programs.show', $program)->with('success', 'The requirement has been updated!');

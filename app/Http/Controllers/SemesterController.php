@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Semester;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\SemesterRequest;
 
 class SemesterController extends Controller
 {
@@ -15,7 +17,8 @@ class SemesterController extends Controller
      */
     public function index()
     {
-
+        $semesters = Semester::all();
+        return view('semesters.index', compact('semesters'));
     }
 
     /**
@@ -25,7 +28,7 @@ class SemesterController extends Controller
      */
     public function create()
     {
-        //
+        return view('semesters.index');
     }
 
     /**
@@ -34,9 +37,11 @@ class SemesterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SemesterRequest $request)
     {
-        //
+        $semester = Semester::create(new Semester($request->all()));
+        $semester->save();
+        return redirect()->route('semester.index')->with('success', 'The semester has been successfully created!');
     }
 
     /**
@@ -47,7 +52,8 @@ class SemesterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $semester = Semester::findOrFail($id);
+        return view('semester.edit', compact('semester'));
     }
 
     /**
@@ -57,9 +63,16 @@ class SemesterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SemesterRequest $request, $id)
     {
-        //
+        $semester = Semester::findOrFail($id);
+        if (!isset($request->completed)) {
+            $semester->update(['semester'=>$request->semester,'completed'=>0]);
+        } else {
+            $semester->update($request->all());
+        }
+
+        return redirect()->route('semesters.index')->with('success', 'The semester has been successfully edited!');
     }
 
     /**
@@ -70,6 +83,8 @@ class SemesterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $semester = Semester::findOrFail($id);
+        $semester->delete();
+        return redirect()->route('semesters.index')->with('success', 'The semester has been successfully deleted!');
     }
 }

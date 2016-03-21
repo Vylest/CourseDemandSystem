@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
 use App\Program;
 use App\Course;
 use App\DegreeRequirement;

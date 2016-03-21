@@ -17,6 +17,12 @@
     <script src="{{ asset('/js/angular.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
     <!-- /USER SCRIPTS -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
+    <script src="//www.unomaha.edu/_files/js/jquery.flexslider-min.js" type="text/javascript"></script>
+    <script src="//www.unomaha.edu/_files/js/bootstrap.min.js"></script>
+
     <link href="//www.unomaha.edu/_files/css/colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//www.ist.unomaha.edu/css/template_fixes.css">
     <link href="{{ asset('css/app.css') }}" media="screen" rel="stylesheet" type="text/css"/>
@@ -93,10 +99,7 @@
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"> </b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ action('CourseController@index') }}">Manage Courses</a></li>
-                                    <li><a href="{{ action('StudentController@index') }}">Manage Students</a></li>
-                                    <li><a href="{{ action('ProgramController@index') }}">Manage Programs</a></li>
-                                    <li><a href="{{ action('UserController@index') }}">Manage Users</a></li>
+                                    <li><a href="{{ action('HomeController@admin') }}">Admin Panel</a></li>
                                 </ul>
                             </li>
                         @endif
@@ -200,11 +203,6 @@
 
 </div>
 
-{{--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>--}}
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
-<script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
-<script src="//www.unomaha.edu/_files/js/jquery.flexslider-min.js" type="text/javascript"></script>
-<script src="//www.unomaha.edu/_files/js/bootstrap.min.js"></script>
 <script src="//www.unomaha.edu/_files/js/bootstrap-hover-dropdown.min.js"></script>
 <script src="//www.unomaha.edu/_files/js/jquery.foundation.navigation.js"></script>
 <script src="//www.unomaha.edu/_files/js/jquery.mousewheel.min.js"></script>
