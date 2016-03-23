@@ -53,10 +53,17 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::resource('programs.requirements', 'RequirementController', ['parameters'=>'singular', 'except'=>['show','index']]);
 
         // plan of study
-        Route::resource('students.plans', 'PlanOfStudyController', ['parameters'=>'singular', 'except'=>['index']]);
+        Route::resource('students.plans', 'PlanOfStudyController', ['parameters'=>'singular']);
+
+        //enrollments
+        Route::resource('students.plans.enrollments', 'EnrollmentController', ['only' =>['update','destroy']]);
 
         // semesters
         Route::resource('semesters', 'SemesterController', ['except'=>['show']]);
+
+        //update enrollment
+        Route::post('students/{sid}/plans/{pid}/enrollment/{eid}','PlanOfStudyController@updateEnrollment');
+        Route::delete('students/{sid}/plans/{pid}/enrollment/{eid}','PlanOfStudyController@destroyEnrollment');
 
         // admin panel
         Route::get('admin', 'HomeController@admin');

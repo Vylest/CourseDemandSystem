@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,7 +14,10 @@ use App\Semester;
 
 class PlanOfStudyController extends Controller
 {
-
+    public function index ($id)
+    {
+        return redirect()->route('students.show', $id);
+    }
 
     public function create($studentId)
     {
@@ -41,21 +45,36 @@ class PlanOfStudyController extends Controller
 
     public function show($studentId, $planId)
     {
-
+        $student = Student::findOrFail($studentId);
+        $semesters = Semester::lists('semester', 'id');
+        $courses =  Course::lists('title', 'id');
+        $plan = PlanOfStudy::findOrFail($planId);
+        //dd($plan->enrollments[0]->course->title);
+        return view('plans.show', compact('student','plan','semesters','courses'));
     }
 
     public function edit($studentId, $planId)
     {
-
+        $student = Student::findOrFail($studentId);
+        $plan = PlanOfStudy::findOrFail($planId);
     }
 
     public function update($studentId, $planId)
     {
-
+        $student = Student::findOrFail($studentId);
+        $plan = PlanOfStudy::findOrFail($planId);
     }
 
     public function destroy($studentId, $planId)
     {
+        $student = Student::findOrFail($studentId);
+        $plan = PlanOfStudy::findOrFail($planId);
 
+        $plan->delete();
+
+        return redirect()->route('student.show', $student->id)->with('success','Plan successfully deleted');
     }
+
+
 }
+
