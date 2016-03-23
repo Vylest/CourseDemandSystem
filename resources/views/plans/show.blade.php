@@ -60,10 +60,12 @@
                     <th>Title</th>
                     <th>Credits</th>
                     <th>Completed</th>
+                    {!! Form::model($plan, ['method'=>'DELETE', 'class'=>'form form-inline delete-confirm',
+                                                'action'=>['PlanOfStudyController@destroy', $student->id, $plan->id]]) !!}
                     <th>Operations
-                        <a class="btn pull-right" href="{{ action('PlanOfStudyController@destroy', [$student->id, $plan->id]) }}">
-                            <i class="fa fa-trash"></i> Delete Program</a>
+                        <button class="btn pull-right" type="submit"><i class="fa fa-trash"></i> Delete Program</button>
                     </th>
+                    {!! Form::close() !!}
                 </tr>
                 </thead>
                 <tbody>
@@ -76,7 +78,7 @@
                         <td>{!! Form::select('credits', [0=>0,1=>1,2=>2,3=>3]) !!}</td>
                         <td>{!! Form::checkbox('completed') !!}</td>
                         <td>
-                            <div class="row">
+                            <div class="row pull-right">
                                 <div class="span1">
                             {!! Form::submit('Save',['class'=>'btn']) !!}
                             {!! Form::close() !!}

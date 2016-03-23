@@ -77,7 +77,12 @@ class EnrollmentController extends Controller
         $student = Student::findOrFail($studentId);
         $plan = PlanOfStudy::findOrFail($planId);
         $enroll = Enrollment::findOrFail($enrollId);
-
+        if(!isset($request->completed)) {
+            $complete = 0;
+        } else {
+            $complete = 1;
+        }
+        $enroll->update(['credits'=>$request->credits,'completed'=>$complete]);
         return redirect()->route('students.plans.show', [$student->id, $plan->id])->with('success', 'Enrollment updated!');
     }
 
