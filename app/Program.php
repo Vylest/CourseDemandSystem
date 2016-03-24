@@ -31,7 +31,8 @@ class Program extends Model
         return $this->hasMany('DegreeRequirement');
     }
 
-    public function scopeRecent($query) {
+    public function scopeRecent($query)
+    {
         return $query->orderBy('updated_at', 'desc')->take(5);
     }
 

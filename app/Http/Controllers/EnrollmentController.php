@@ -77,7 +77,7 @@ class EnrollmentController extends Controller
         $student = Student::findOrFail($studentId);
         $plan = PlanOfStudy::findOrFail($planId);
         $enroll = Enrollment::findOrFail($enrollId);
-        if(!isset($request->completed)) {
+        if (!isset($request->completed)) {
             $complete = 0;
         } else {
             $complete = 1;
@@ -101,5 +101,4 @@ class EnrollmentController extends Controller
 
         return redirect()->route('students.plans.show', [$student->id, $plan->id])->with('success', 'Enrollment deleted!');
     }
-
 }

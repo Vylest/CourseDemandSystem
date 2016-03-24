@@ -57,7 +57,7 @@ class CourseSeeder extends Seeder
         Course::create(['title' => 'Proc Re-Eng with IT', 'number'=>'8196']);
         Course::create(['title' => 'Advance System Analysis and Design', 'number'=>'ISQA 8220']);
         Course::create(['title' => 'Independent Research', 'number'=>'ISQA 8900']);
-        Course::create(['title' => 'ISQA Thesis', 'number'=>'ISQA 8990']);
+        Course::create(['title' => 'Thesis', 'number'=>'ISQA 8990']);
         Course::create(['title' => 'Managing the IS Function', 'number'=>'ISQA 8420']);
         Course::create(['title' => 'Application Regression Analysis', 'number'=>'ISQA 8340']);
         Course::create(['title' => 'Data Warehouse Theory', 'number'=>'ISQA 8700']);
@@ -70,5 +70,15 @@ class CourseSeeder extends Seeder
         Course::create(['title' => 'Data Warehousing/Mining', 'number'=>'CSCI 8350']);
         Course::create(['title' => 'Seminar in MIS', 'number'=>'ISQA 8080']);
         Course::create(['title' => 'E-Commerce Security', 'number'=>'ISQA 8530']);
+        Course::create(['title' => 'Database Management III', 'number'=>'ISQA 8410']);
+        Course::create(['title' => 'Managing the Distributed Computer Environment', 'number'=>'ISQA 8380']);
+        Course::create(['title' => 'MIS Capstone', 'number'=>'ISQA 8950']);
+        Course::create(['title' => 'Graphical UI Design', 'number'=>'ISQA 8525']);
+        Course::create(['title' => 'Information Security, Policy and Ethics', 'number'=>'ISQA 8570']);
+        Course::create(['title' => 'Health Care Systems Overview', 'number'=>'PA 8760']);
+        Course::create(['title' => 'Clinical System Architecture', 'number'=>'ISQA 8400']);
+        Course::create(['title' => 'Readings Clinical Informatics', 'number'=>'ISQA 8500']);
+        Course::create(['title' => 'Accounting Fundamentals', 'number'=>'BSAD 8110']);
+        Course::create(['title' => 'Cartography & GIS', 'number'=>'GEOG 8535']);
     }
 }
