@@ -28,7 +28,7 @@ class SemesterController extends Controller
      */
     public function create()
     {
-        return view('semesters.index');
+        return view('semesters.create');
     }
 
     /**
@@ -39,9 +39,9 @@ class SemesterController extends Controller
      */
     public function store(SemesterRequest $request)
     {
-        $semester = Semester::create(new Semester($request->all()));
+        $semester = Semester::create($request->all());
         $semester->save();
-        return redirect()->route('semester.index')->with('success', 'The semester has been successfully created!');
+        return redirect()->route('semesters.index')->with('success', 'The semester has been successfully created!');
     }
 
     /**
@@ -53,7 +53,7 @@ class SemesterController extends Controller
     public function edit($id)
     {
         $semester = Semester::findOrFail($id);
-        return view('semester.edit', compact('semester'));
+        return view('semesters.edit', compact('semester'));
     }
 
     /**

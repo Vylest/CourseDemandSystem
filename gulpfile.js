@@ -17,13 +17,16 @@ var vendor_js_files = [
     assets_dir + "js/vendor/jquery.min.js",
     assets_dir + "js/vendor/angular.min.js",
     assets_dir + "js/vendor/ng-resource.min.js",
-    assets_dir + "js/vendor/ng-table.js"
+    assets_dir + "js/vendor/ng-table.js",
+    assets_dir + "js/vendor/ng-infinite-scroll.js"
 ];
 
 
 // js files
 var angular_js_files = [
-    assets_dir + 'js/angular.js'
+    assets_dir + 'js/angular.js',
+    assets_dir + 'js/factories/*.js',
+    assets_dir + 'js/controllers/*.js'
 ];
 
 var jsbeautifier_options = {

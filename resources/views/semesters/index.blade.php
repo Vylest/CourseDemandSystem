@@ -7,7 +7,7 @@
         <tr>
             <th>Semester</th>
             <th>Completed</th>
-            <th>Operations <a class="btn" href="{{ action('SemesterController@create') }}"><i class="fa fa-plus"></i> Add Semester</a></th>
+            <th>Operations <a class="btn pull-right" href="{{ action('SemesterController@create') }}"><i class="fa fa-plus"></i> Add Semester</a></th>
         </tr>
         </thead>
         <tbody>

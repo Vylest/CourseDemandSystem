@@ -44,7 +44,9 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::resource('students', 'StudentController');
 
         //courses
+        Route::get('courses/get', 'CourseController@getCourses');
         Route::resource('courses', 'CourseController');
+
 
         //program
         Route::resource('programs', 'ProgramController');

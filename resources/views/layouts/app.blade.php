@@ -28,7 +28,7 @@
     <link href="{{ asset('css/app.css') }}" media="screen" rel="stylesheet" type="text/css"/>
     @yield('header')
 </head>
-<body>
+<body ng-app="CourseApp">
 <div class="subsite" id="content">
     <nav></nav>
     <div class="hide-mobile" id="header">

@@ -12,8 +12,14 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
-        return view('courses.index', compact('courses'));
+        $courses = Course::paginate();
+
+        if (!\Request::wantsJson()) {
+            return view('courses.index');
+        }
+
+        $returnData = ['data'=>$courses];
+        return response()->json($courses);
     }
 
     public function show($id)
@@ -55,5 +61,24 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         $course->delete();
         return redirect()->route('courses.index')->with('success', 'The course has been successfully deleted!');
+    }
+
+    public function getCourses()
+    {
+        $courses = Course::all();
+
+        $returnData = ['data'=>$courses];
+
+//        $courseList = [];
+//        foreach($courses as $course => $id) {
+//            $data = (object)[
+//                'id'=>$id,
+//                'number' => $course['number'],
+//                'title' => $course['title']
+//            ];
+//            array_push($courseList, $data);
+//        }
+
+        return response()->json($returnData);
     }
 }
