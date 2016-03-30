@@ -1,4 +1,4 @@
-app.controller('CourseController', ['$scope', '$location', '$filter', '$resource', 'ngTableParams', 'ScrollService',
+app.controller('TableController', ['$scope', '$location', '$filter', '$resource', 'ngTableParams', 'ScrollService',
     function($scope, $location, $filter, $resource, ngTableParams, ScrollService) {
 
         var Api = $resource(window.location.pathname);

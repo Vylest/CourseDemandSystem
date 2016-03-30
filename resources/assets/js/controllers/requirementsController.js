@@ -1,5 +1,6 @@
 app.controller('RequirementsController', ['$scope', '$location', '$resource', 'requirementFields',
     function($scope, $location, $resource, requirementFields) {
+
         $scope.requirementFields = requirementFields;
 
         $scope.deleteRequirement = function(index) {
@@ -7,7 +8,7 @@ app.controller('RequirementsController', ['$scope', '$location', '$resource', 'r
             removeDiv.remove();
         };
 
-        $scope.deleteRequirementItem = function(index) {
+        $scope.deleteRequirementField = function(index) {
             requirementFields.data.splice(index, 1);
         };
 
@@ -16,12 +17,14 @@ app.controller('RequirementsController', ['$scope', '$location', '$resource', 'r
         $scope.addRequirementField = function() {
             requirementFields.data.push({
                 "id": $scope.requirementCounter,
-                "name": $scope.newItemName,
-                "type": $scope.newItemType
+                "type": $scope.newCourseType,
+                "courseId": $scope.newCourseId,
+                "programId": $scope.newProgramId
             });
             $scope.requirementCounter++;
-            $scope.newItemName = '';
-            $scope.newItemType = '';
+            $scope.newCourseType = '';
+            $scope.newCourseId = '';
+            $scope.newProgramId = '';
         };
     }
 ]);

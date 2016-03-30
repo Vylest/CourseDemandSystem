@@ -40,7 +40,7 @@ app.factory('ScrollService', ['$http', '$location',
             }).success(function(data) {
                 var items = data.data;
                 for (var i = 0; i < items.length; i++) {
-                    angular.element('[ng-controller=CourseController]').scope().tableParams.data.push(items[i]);
+                    angular.element('[ng-controller=TableController]').scope().tableParams.data.push(items[i]);
                 }
                 this.after++;
                 this.busy = false;
@@ -50,7 +50,10 @@ app.factory('ScrollService', ['$http', '$location',
         return Entry;
     }
 ]);
-app.controller('CourseController', ['$scope', '$location', '$filter', '$resource', 'ngTableParams', 'ScrollService',
+/**
+ * Created by epenner on 3/29/2016.
+ */
+app.controller('TableController', ['$scope', '$location', '$filter', '$resource', 'ngTableParams', 'ScrollService',
     function($scope, $location, $filter, $resource, ngTableParams, ScrollService) {
 
         var Api = $resource(window.location.pathname);
@@ -88,6 +91,7 @@ app.controller('CourseController', ['$scope', '$location', '$filter', '$resource
 ]);
 app.controller('RequirementsController', ['$scope', '$location', '$resource', 'requirementFields',
     function($scope, $location, $resource, requirementFields) {
+
         $scope.requirementFields = requirementFields;
 
         $scope.deleteRequirement = function(index) {
@@ -95,7 +99,7 @@ app.controller('RequirementsController', ['$scope', '$location', '$resource', 'r
             removeDiv.remove();
         };
 
-        $scope.deleteRequirementItem = function(index) {
+        $scope.deleteRequirementField = function(index) {
             requirementFields.data.splice(index, 1);
         };
 
@@ -104,12 +108,14 @@ app.controller('RequirementsController', ['$scope', '$location', '$resource', 'r
         $scope.addRequirementField = function() {
             requirementFields.data.push({
                 "id": $scope.requirementCounter,
-                "name": $scope.newItemName,
-                "type": $scope.newItemType
+                "type": $scope.newCourseType,
+                "courseId": $scope.newCourseId,
+                "programId": $scope.newProgramId
             });
             $scope.requirementCounter++;
-            $scope.newItemName = '';
-            $scope.newItemType = '';
+            $scope.newCourseType = '';
+            $scope.newCourseId = '';
+            $scope.newProgramId = '';
         };
     }
 ]);

@@ -14,8 +14,42 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::all();
-        return view('student.index', compact('students'));
+//        $students = Student::all();
+//        return view('student.index', compact('students'));
+
+        // check for request parameters
+        $input = \Request::all();
+
+        if (!\Request::wantsJson()) {
+            return view('student.index');
+        }
+
+//        $courses = Course::paginate();
+        //$query = Course::select('number', 'title');
+        if (isset($input['sorting'])) {
+            $orderParam = $input['sorting'];
+            $orderBy = key($orderParam);
+            $direction = $input['sorting'][key($orderParam)];
+        } else {
+            $orderBy = 'first_name';
+            $direction = 'asc';
+        }
+
+        $query = Student::select(['first_name', 'last_name', 'netid', 'nuid', 'status', 'id'])->orderBy($orderBy, $direction);
+
+        if (isset($input['filter'])) {
+            $filterParam = $input['filter'];
+
+            foreach ($filterParam as $key => $value) {
+                $filterValue = '%'. $value . '%';
+                $column = $key;
+                $query = $query->where($column, 'like', $filterValue);
+            }
+        }
+
+        $students = $query->paginate();
+
+        return response()->json($students);
     }
 
     public function show($id)
@@ -43,7 +77,7 @@ class StudentController extends Controller
         return view('student.edit', compact('student'));
     }
 
-    public function update(Requests\StudentRequest $request, $id)
+    public function update(Requests\StudentUpdateRequest $request, $id)
     {
 
         $student = Student::findOrFail($id);

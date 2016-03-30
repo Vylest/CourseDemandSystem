@@ -12,13 +12,39 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::paginate();
+        // check for request parameters
+        $input = \Request::all();
 
         if (!\Request::wantsJson()) {
             return view('courses.index');
         }
 
-        $returnData = ['data'=>$courses];
+//        $courses = Course::paginate();
+        //$query = Course::select('number', 'title');
+
+        if (isset($input['sorting'])) {
+            $orderParam = $input['sorting'];
+            $orderBy = key($orderParam);
+            $direction = $input['sorting'][key($orderParam)];
+        } else {
+            $orderBy = 'title';
+            $direction = 'asc';
+        }
+
+        $query = Course::select(['id', 'number', 'title'])->orderBy($orderBy, $direction);
+
+        if (isset($input['filter'])) {
+            $filterParam = $input['filter'];
+
+            foreach ($filterParam as $key => $value) {
+                $filterValue = '%'. $value . '%';
+                $column = $key;
+                $query = $query->where($column, 'like', $filterValue);
+            }
+        }
+
+        $courses = $query->paginate();
+
         return response()->json($courses);
     }
 

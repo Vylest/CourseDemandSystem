@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Program;
+use App\Course;
 use App\DegreeRequirement;
-use Illuminate\Support\Facades\DB;
 
 class ProgramController extends Controller
 {
@@ -21,8 +21,9 @@ class ProgramController extends Controller
     public function show($id)
     {
         $program = Program::findOrFail($id);
+        $courses = Course::lists('title', 'id');
         $requirements = DegreeRequirement::where(['program_id'=>$program->id])->orderBy('type', 'asc')->get();
-        return view('programs.show', compact('program', 'requirements'));
+        return view('programs.show', compact('program', 'requirements', 'courses'));
     }
 
     public function create()

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')Programs@endsection
+@section('page_title')Programs @endsection
 @section('content')
     <table class="gridder">
         <thead>

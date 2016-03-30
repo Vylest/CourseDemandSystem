@@ -21,7 +21,7 @@ app.factory('ScrollService', ['$http', '$location',
             }).success(function(data) {
                 var items = data.data;
                 for (var i = 0; i < items.length; i++) {
-                    angular.element('[ng-controller=CourseController]').scope().tableParams.data.push(items[i]);
+                    angular.element('[ng-controller=TableController]').scope().tableParams.data.push(items[i]);
                 }
                 this.after++;
                 this.busy = false;

@@ -2,7 +2,7 @@
 
 @section('page_title')View Courses @endsection
 @section('content')
-    <div ng-controller="CourseController" infinite-scroll="scrollService.nextPage()">
+    <div ng-controller="TableController" infinite-scroll="scrollService.nextPage()">
     <table ng-table="tableParams" show-filter="true" class="gridder">
         <thead>
             <tr>
@@ -21,7 +21,21 @@
                            ng-blur="showNumber = hideField($event)"
                            placeholder="Start typing to filter...">
                 </th>
-                <th>Title</th>
+                <th>
+                    Title
+                    <i class="fa fa-search"
+                       ng-click="showTitle = !showTitle"></i>
+                    <i class="fa fa-sort"
+                       ng-class="{
+                            'fa-sort-asc': tableParams.isSortBy('title', 'asc'),
+                            'fa-sort-desc': tableParams.isSortBy('title', 'desc')}"
+                       ng-click="tableParams.sorting({title: tableParams.isSortBy('title', 'asc') ? 'desc' : 'asc'})"></i>
+                    <input type="text"
+                           ng-model="params.filter()['title']"
+                           ng-show="showTitle"
+                           ng-blur="showTitle = hideField($event)"
+                           placeholder="Start typing to filter...">
+                </th>
                 <th><a class="btn pull-right" href="{{ action('CourseController@create') }}"><i class="fa fa-plus"></i> Create New Course</a></th>
             </tr>
         </thead>
@@ -38,7 +52,6 @@
                             <a href="courses/@{{ course.id }}/edit" class="btn"><i class="fa fa-edit"></i> Edit</a>
                             <button type="submit" class="btn"><i class="fa fa-trash"></i> Delete</button>
                         </form>
-
                     </span>
                 </td>
             </tr>
