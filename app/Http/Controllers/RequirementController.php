@@ -48,15 +48,18 @@ class RequirementController extends Controller
 
         if (sizeof($request->newCourseId) > 0) {
             foreach ($request->newCourseType as $key => $newCourseType) {
-                $requirement = new DegreeRequirement([
-                    'program_id'=>$program->id, 'course_id'=> $request->newCourseId[$key], 'type' => $newCourseType
-                ]);
-                $program->degreeRequirements()->save($requirement);
+                if ($request->newCourseId[$key] == "" or $newCourseType == "") {
+                    return redirect()->route('programs.show', $program->id)->withErrors('Something went wrong... Please try again!');
+                } else {
+                    $requirement = new DegreeRequirement([
+                        'program_id' => $program->id, 'course_id' => $request->newCourseId[$key], 'type' => $newCourseType
+                    ]);
+                    $program->degreeRequirements()->save($requirement);
+                    $program->updated_at = Carbon::now();
+                    $program->save();
+                }
             }
-            $program->updated_at = Carbon::now();
-            $program->save();
         }
-
         return redirect()->route('programs.show', $program->id)->with('success', 'The program requirements have been updated!');
     }
 

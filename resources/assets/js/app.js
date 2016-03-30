@@ -19,6 +19,10 @@ $(document).ready(function() {
         });
     }, 3000);
 
+    $("#showRequirementForm").on('click', function() {
+        $("#addRequirementForm").toggle();
+    });
+
     // activate collapse
     $('.collapse').collapse();
 

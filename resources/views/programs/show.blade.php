@@ -39,7 +39,7 @@
                     <th>Type</th>
                     <th>
                         Operations
-                        <a class="btn pull-right" href="{{ action('RequirementController@create', [$program]) }}">Add a Course</a>
+                        <a class="btn pull-right" id="showRequirementForm">Add a Course</a>
                     </th>
                 </tr>
                 </thead>
