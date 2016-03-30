@@ -93,18 +93,10 @@ class CourseController extends Controller
     {
         $courses = Course::all();
 
-        $returnData = ['data'=>$courses];
+        foreach ($courses as &$course) {
+            $course->value = $course->id;
+        }
 
-//        $courseList = [];
-//        foreach($courses as $course => $id) {
-//            $data = (object)[
-//                'id'=>$id,
-//                'number' => $course['number'],
-//                'title' => $course['title']
-//            ];
-//            array_push($courseList, $data);
-//        }
-
-        return response()->json($returnData);
+        return response()->json($courses);
     }
 }

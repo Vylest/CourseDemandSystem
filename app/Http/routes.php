@@ -49,8 +49,8 @@ Route::group(['middleware' => ['web']], function ($id) {
 
 
         //program
-        Route::resource('programs', 'ProgramController');
         Route::get('programs/{id}/info', 'ProgramController@info');
+        Route::resource('programs', 'ProgramController');
 
         //program requirements
         Route::resource('programs.requirements', 'RequirementController', ['parameters'=>'singular', 'except'=>['show','index']]);

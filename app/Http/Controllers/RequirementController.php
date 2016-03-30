@@ -41,12 +41,23 @@ class RequirementController extends Controller
      */
     public function store($programId, Request $request)
     {
+        //dd($request->all());
+
         $program = Program::findOrFail($programId);
-        $requirement = new DegreeRequirement($request->all());
-        $program->degreeRequirements()->save($requirement);
-        $program->updated_at = Carbon::now();
-        $program->save();
-        return redirect()->route('programs.show', $program->id)->with('success', 'The requirement has been added to the program!');
+        //$requirement = new DegreeRequirement($request->all());
+
+        if (sizeof($request->newCourseId) > 0) {
+            foreach ($request->newCourseType as $key => $newCourseType) {
+                $requirement = new DegreeRequirement([
+                    'program_id'=>$program->id, 'course_id'=> $request->newCourseId[$key], 'type' => $newCourseType
+                ]);
+                $program->degreeRequirements()->save($requirement);
+            }
+            $program->updated_at = Carbon::now();
+            $program->save();
+        }
+
+        return redirect()->route('programs.show', $program->id)->with('success', 'The program requirements have been updated!');
     }
 
     /**
