@@ -21,15 +21,18 @@ class PlanOfStudy extends Model
         'deleted_at'
     ];
 
-    public function student() {
+    public function student()
+    {
         return $this->belongsTo('Student');
     }
 
-    public function enrollments(){
+    public function enrollments()
+    {
         return $this->hasMany('Enrollment');
     }
 
-    public function program() {
+    public function program()
+    {
         return $this->belongsTo('Program');
     }
 }

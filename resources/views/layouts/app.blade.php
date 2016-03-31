@@ -3,43 +3,32 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
-
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-    <!-- InstanceBeginEditable name="doctitle" -->
     <title>MavPlan | University of Nebraska Omaha</title>
     <meta content="" name="description"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-
     <link href="//www.unomaha.edu/_files/css/default-001-header-footer.css" rel="stylesheet"/>
     <script src="//www.unomaha.edu/_files/js/modernizr-2.5.3.min.js"></script>
     <script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
+    <!-- USER SCRIPTS -->
+    <script src="{{ asset('/js/vendor.js') }}"></script>
+    <script src="{{ asset('/js/angular.js') }}"></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
+    <!-- /USER SCRIPTS -->
 
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
+    <script src="//www.unomaha.edu/_files/js/jquery.flexslider-min.js" type="text/javascript"></script>
+    <script src="//www.unomaha.edu/_files/js/bootstrap.min.js"></script>
 
     <link href="//www.unomaha.edu/_files/css/colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//www.ist.unomaha.edu/css/template_fixes.css">
-    <style type="text/css">
-        /* USER STYLES */
-
-        .alert {
-            padding-left:10px;
-            padding-right:20px !important;
-        }
-
-        #content_main > .inner-content {
-            -webkit-border-radius:10px !important;
-            -moz-border-radius:10px !important;
-            border-radius:10px !important;
-        }
-
-        /* /USER STYLES */
-
-    </style>
+    <link href="{{ asset('css/app.css') }}" media="screen" rel="stylesheet" type="text/css"/>
     @yield('header')
 </head>
-
-<body>
+<body ng-app="CourseApp">
 <div class="subsite" id="content">
     <nav></nav>
     <div class="hide-mobile" id="header">
@@ -73,8 +62,10 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ action('StudentController@create') }}">Add New Student</a></li>
                                 <li><a href="{{ action('StudentController@index') }}">View Students</a></li>
+                                @if (Auth::user()->canEdit())
+                                    <li><a href="{{ action('StudentController@create') }}">Add New Student</a></li>
+                                @endif
                             </ul>
                         </li>
 
@@ -82,6 +73,9 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ action('ProgramController@index') }}">View Programs</a></li>
+                                @if (Auth::user()->canEdit())
+                                    <li><a href="{{ action('ProgramController@create') }}">Add New Program</a></li>
+                                @endif
                             </ul>
                         </li>
 
@@ -89,6 +83,9 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ action('CourseController@index') }}">View Courses</a></li>
+                                @if(Auth::user()->canEdit())
+                                    <li><a href="{{ action('CourseController@create') }}">Add a Course</a></li>
+                                @endif
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -98,14 +95,11 @@
                                 <li><a href="{{ action('UserController@logout') }}">Log Out</a></li>
                             </ul>
                         </li>
-                        @if (Auth::user()->account_type == 2)
+                        @if (Auth::user()->canEdit())
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"> </b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ action('CourseController@index') }}">Manage Courses</a></li>
-                                    <li><a href="{{ action('StudentController@index') }}">Manage Students</a></li>
-                                    <li><a href="{{ action('ProgramController@index') }}">Manage Programs</a></li>
-                                    <li><a href="{{ action('UserController@index') }}">Manage Users</a></li>
+                                    <li><a href="{{ action('HomeController@admin') }}">Admin Panel</a></li>
                                 </ul>
                             </li>
                         @endif
@@ -126,7 +120,7 @@
                         <ul class="breadcrumb">
                             <li><a href="http://www.unomaha.edu/">UNO</a></li>
                             <li><a href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a></li>
-                            <li><a href="/">Course Demand System</a></li>
+                            <li><a href="/">MavPlan</a></li>
                         </ul>
                     </div>
                 </div>
@@ -201,19 +195,13 @@
             <div class="row-fluid">
                 <div class="span9"><a href="/" id="footer-logo">University of Nebraska Omaha</a>
                     <p>University of Nebraska Omaha, 6001 Dodge Street, Omaha, NE 68182</p>
-                    <p>&#169; 2014 | <a href="http://emergency.unomaha.edu/">Emergency Information</a> <span class="footer-alert">Alert</span></p>
+                    <p>&#169; {{ date('Y') }} | <a href="http://emergency.unomaha.edu/">Emergency Information</a> <span class="footer-alert">Alert</span></p>
                 </div>
             </div>
         </div>
     </footer>
-
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
-<script src="//www.unomaha.edu/_files/js/respond.min.js"></script>
-<script src="//www.unomaha.edu/_files/js/jquery.flexslider-min.js" type="text/javascript"></script>
-<script src="//www.unomaha.edu/_files/js/bootstrap.min.js"></script>
 <script src="//www.unomaha.edu/_files/js/bootstrap-hover-dropdown.min.js"></script>
 <script src="//www.unomaha.edu/_files/js/jquery.foundation.navigation.js"></script>
 <script src="//www.unomaha.edu/_files/js/jquery.mousewheel.min.js"></script>
@@ -231,11 +219,6 @@
   ga('send', 'pageview');
 
 </script>
-
-
-<!-- USER SCRIPTS -->
-<script src="{{ asset('/js/app.js') }}"></script>
-<!-- /USER SCRIPTS -->
 
 </body>
 </html>

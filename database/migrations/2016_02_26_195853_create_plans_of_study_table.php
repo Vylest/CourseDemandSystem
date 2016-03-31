@@ -14,8 +14,8 @@ class CreatePlansOfStudyTable extends Migration
     {
         Schema::create('plans_of_study', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id')->references('id')->on('students')->unsigned();
-            $table->integer('program_id')->references('id')->on('programs')->unsigned();
+            $table->integer('student_id')->references('id')->on('students')->onDelete('cascade')->unsigned();
+            $table->integer('program_id')->references('id')->on('programs')->onDelete('cascade')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

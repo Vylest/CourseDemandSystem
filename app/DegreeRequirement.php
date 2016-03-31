@@ -19,11 +19,13 @@ class DegreeRequirement extends Model
         'deleted_at'
     ];
 
-    public function program() {
+    public function program()
+    {
         return $this->belongsTo('Program');
     }
 
-    public function course() {
+    public function course()
+    {
         return $this->belongsTo('Course');
     }
 }

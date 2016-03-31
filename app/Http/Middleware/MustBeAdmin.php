@@ -24,10 +24,10 @@ class MustBeAdmin
 
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && ($request->user()->account_type == 2)) {
+        if (Auth::check() && $request->user()->is_admin) {
             return $next($request);
         } else {
-            return redirect()->back()->withErrors('You must be an admin to access this resource.');
+            return redirect()->route('dashboard')->withErrors('You must be an administrator to access that resource.');
         }
     }
 }

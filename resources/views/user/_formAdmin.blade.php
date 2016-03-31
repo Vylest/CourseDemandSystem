@@ -15,7 +15,7 @@
 
 <div class="control-group span6">
     {!! Form::label('account_type', 'Account Type') !!}
-    {!! Form::select('account_type', array(0=>'read-only',1=>'user', 2=>'admin'), null, ['class' => 'form-control']) !!}
+    {!! Form::select('account_type', array('read-only'=>'read-only','user'=>'user', 'admin'=>'admin'), null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="control-group span6">

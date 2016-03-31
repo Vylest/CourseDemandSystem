@@ -26,11 +26,13 @@ class Student extends Model
         'name'
     ];
 
-    public function plansOfStudy() {
+    public function plansOfStudy()
+    {
         return $this->hasMany('PlanOfStudy');
     }
 
-    public function getNameAttribute() {
+    public function getNameAttribute()
+    {
         return $this->first_name . ' ' . $this->last_name;
     }
 }

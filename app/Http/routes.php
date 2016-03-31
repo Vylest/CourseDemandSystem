@@ -34,7 +34,7 @@ Route::group(['middleware' => ['web']], function ($id) {
     Route::group(['middleware' => ['guest']], function () {
         Route::get('/home', 'UserController@login');
         Route::get('/', 'UserController@login');
-        Route::get('auth/login', 'UserController@login');
+        //Route::get('auth/login', 'UserController@login');
     });
 
     Route::get('auth/logout', array('uses' => 'UserController@logout', 'as' => 'auth.logout'));
@@ -44,14 +44,32 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::resource('students', 'StudentController');
 
         //courses
+        Route::get('courses/get', 'CourseController@getCourses');
         Route::resource('courses', 'CourseController');
 
+
         //program
+        Route::get('programs/{id}/info', 'ProgramController@info');
         Route::resource('programs', 'ProgramController');
 
-        // plan of study
-        Route::resource('students.plans', 'PlanOfStudyController');
+        //program requirements
+        Route::resource('programs.requirements', 'RequirementController', ['parameters'=>'singular', 'except'=>['show','index']]);
 
+        // plan of study
+        Route::resource('students.plans', 'PlanOfStudyController', ['parameters'=>'singular']);
+
+        //enrollments
+        Route::resource('students.plans.enrollments', 'EnrollmentController', ['only' =>['update','destroy']]);
+
+        // semesters
+        Route::resource('semesters', 'SemesterController', ['except'=>['show']]);
+
+        //update enrollment
+        Route::post('students/{sid}/plans/{pid}/enrollment/{eid}', 'PlanOfStudyController@updateEnrollment');
+        Route::delete('students/{sid}/plans/{pid}/enrollment/{eid}', 'PlanOfStudyController@destroyEnrollment');
+
+        // admin panel
+        Route::get('admin', 'HomeController@admin');
 
         Route::group(['middleware' => ['id']], function ($id) {
             Route::get('users/{id}/editAccount', 'UserController@editAccount');
@@ -67,16 +85,6 @@ Route::group(['middleware' => ['web']], function ($id) {
         });
 
         Route::get('/', 'HomeController@dashboard');
-        Route::get('dashboard', 'HomeController@dashboard');
+        Route::get('dashboard', ['uses'=>'HomeController@dashboard', 'as' => 'dashboard']);
     });
 });
-
-
-
-
-
-
-
-
-
-

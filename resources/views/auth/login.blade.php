@@ -38,13 +38,8 @@
 @endsection
 
 @section('content')
-
 <div>
-
     <div class="row">
-
-        @include('partials._flash')
-        @include('partials._errors')
         <div id="UnoForm" class="">
             <div id="form-signin-heading">
                 <h4 class="UnoHidden">(do not bookmark this page)</h4>
@@ -53,7 +48,7 @@
             <form class="form form-signin" role="form" method="POST" action="{{ url('/auth/login') }}">
                 {{ csrf_field() }}
 
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                <div class="control-group">
                     <label class="span4 control-label">University of Nebraska ID</label>
 
                     <div class="span4">
@@ -67,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <div class="control-group">
                     <label class="span6 control-label">Password</label>
 
                     <div class="span4">
@@ -80,10 +75,10 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="control-group">
                     <div class="span4">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-btn fa-sign-in"></i>Login
+                            <i class="fa fa-btn fa-sign-in"></i> Login
                         </button>
                         <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                     </div>
@@ -92,5 +87,4 @@
         </div>
     </div>
 </div>
-
 @endsection
