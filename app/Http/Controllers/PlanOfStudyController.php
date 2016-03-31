@@ -49,7 +49,7 @@ class PlanOfStudyController extends Controller
         $semesters = Semester::lists('semester', 'id');
         $courses =  Course::lists('title', 'id');
         $plan = PlanOfStudy::findOrFail($planId);
-        //dd($plan->enrollments[0]->course->title);
+        
         return view('plans.show', compact('student', 'plan', 'semesters', 'courses'));
     }
 
@@ -57,12 +57,17 @@ class PlanOfStudyController extends Controller
     {
         $student = Student::findOrFail($studentId);
         $plan = PlanOfStudy::findOrFail($planId);
+        
+        
     }
 
-    public function update($studentId, $planId)
+    public function update($studentId, $planId, Request $request)
     {
         $student = Student::findOrFail($studentId);
         $plan = PlanOfStudy::findOrFail($planId);
+        $plan->update($request->all());
+        
+        return redirect()->route('students.show', [$student->id])->with('success', 'Plan successfully updated!');
     }
 
     public function destroy($studentId, $planId)

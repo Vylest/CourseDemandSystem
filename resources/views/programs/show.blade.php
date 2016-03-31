@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title')Degree Requirements @endsection
+@section('page_title')Programs @endsection
 @section('content')
     <h3>{{ $program->name }}</h3>
     <div class="row">
@@ -29,7 +29,10 @@
             </table>
         </div>
     </div>
-
+    {!! Form::open([
+                'action' => ['RequirementController@store', $program->id]]) !!}
+    @include('programs._formRequirements')
+    {!! Form::close() !!}
     @if ( isset($requirements))
             <h3>Requirements</h3>
             <table class="gridder">
@@ -57,9 +60,5 @@
                 @endforeach
                 </tbody>
             </table>
-            {!! Form::open([
-                    'action' => ['RequirementController@store', $program->id]]) !!}
-                @include('programs._formRequirements')
-            {!! Form::close() !!}
     @endif
 @endsection

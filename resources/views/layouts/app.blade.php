@@ -63,7 +63,7 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ action('StudentController@index') }}">View Students</a></li>
-                                @if (Auth::user()->is_admin)
+                                @if (Auth::user()->canEdit())
                                     <li><a href="{{ action('StudentController@create') }}">Add New Student</a></li>
                                 @endif
                             </ul>
@@ -73,7 +73,7 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ action('ProgramController@index') }}">View Programs</a></li>
-                                @if (Auth::user()->is_admin)
+                                @if (Auth::user()->canEdit())
                                     <li><a href="{{ action('ProgramController@create') }}">Add New Program</a></li>
                                 @endif
                             </ul>
@@ -83,7 +83,7 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"> </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ action('CourseController@index') }}">View Courses</a></li>
-                                @if(Auth::user()->is_admin)
+                                @if(Auth::user()->canEdit())
                                     <li><a href="{{ action('CourseController@create') }}">Add a Course</a></li>
                                 @endif
                             </ul>
@@ -95,7 +95,7 @@
                                 <li><a href="{{ action('UserController@logout') }}">Log Out</a></li>
                             </ul>
                         </li>
-                        @if (Auth::user()->is_admin)
+                        @if (Auth::user()->canEdit())
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"> </b></a>
                                 <ul class="dropdown-menu">
@@ -200,7 +200,6 @@
             </div>
         </div>
     </footer>
-
 </div>
 
 <script src="//www.unomaha.edu/_files/js/bootstrap-hover-dropdown.min.js"></script>
@@ -220,9 +219,6 @@
   ga('send', 'pageview');
 
 </script>
-
-
-
 
 </body>
 </html>

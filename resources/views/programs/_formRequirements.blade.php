@@ -1,6 +1,6 @@
 <div ng-controller="RequirementsController" id="addRequirementForm" style="display:none">
     <div ng-visible="requirementFields.data.count > 0">
-        <table class="gridder">
+        <table class="gridder" id="requirementQueue" style="display:none">
             <thead>
             <tr>
                 <th class="span2">Remove</th>
@@ -30,16 +30,16 @@
     <div class="row">
         <div class="span4">
             {!! Form::label('Course') !!}
-            {!! Form::select('course_id', [], null, ['ng-model'=>'newCourseId', 'ng-options' => 'course as course.title for course in courses']) !!}
+            {!! Form::select('course_id', [], null, ['ng-model'=>'newCourseId', 'ng-options' => 'course as course.title for course in courses', 'id'=>'requirementCourseSelect']) !!}
             {!! Form::hidden('program_id', $program->id, ['ng-model'=>'newProgramId']) !!}
         </div>
         <div class="span2">
             {!! Form::label('Course Type') !!}
-            {!! Form::select('type', [], 1, ['ng-model'=>'newCourseType', 'ng-options'=>'type as type.title for type in courseTypes']) !!}
+            {!! Form::select('type', [], 1, ['ng-model'=>'newCourseType', 'ng-options'=>'type as type.title for type in courseTypes', 'id'=>'requirementTypeSelect']) !!}
         </div>
         <div class="span2">
             {!! Form::label('&nbsp;') !!}
-            <input type="button" class="btn" value="Add Requirement Field" ng-click="addRequirementField()">
+            <input type="button" class="btn" id="addRequirement" value="Add Requirement Field" ng-click="addRequirementField()">
         </div>
         <div class="span2">
             {!! Form::label('&nbsp;') !!}

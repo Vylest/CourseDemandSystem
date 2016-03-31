@@ -4,19 +4,16 @@
 
 @section('content')
     <div class="row">
-    <div class="span4">
+    <div class="span6">
         <table class="gridder">
             <thead>
             <tr>
-                <th>Student Information
-                    <a class= "btn btn-cta-red pull-right" href="{{ action('StudentController@show', $student->id) }}">
-                        <i class="fa fa-edit"></i> Edit Student</a>
-                </th>
+                <th>Student Information</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>{{ $student->name }}</td>
+                <td><a href="{{ action('StudentController@show', $student->id) }}">{{ $student->name }}</a></td>
             </tr>
             <tr>
                 <td><strong>Net ID:</strong> {{ $student->netid }}</td>
@@ -27,19 +24,16 @@
             </tbody>
         </table>
     </div>
-    <div class="span8">
+    <div class="span6">
         <table class="gridder">
             <thead>
             <tr>
-                <th>Program Information
-                    <a class="btn btn-cta-red pull-right" href="{{ action('ProgramController@show', $plan->program->id) }}">
-                        <i class="fa fa-edit"></i> Edit Program</a>
-                </th>
+                <th>Program Information</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>{{ $plan->program->name }}</td>
+                <td><a href="{{ action('ProgramController@show', $plan->program->id) }}">{{ $plan->program->name }}</a></td>
             </tr>
             <tr>
                 <td>{{ $plan->program->type }} {{ $plan->program->career }}</td>

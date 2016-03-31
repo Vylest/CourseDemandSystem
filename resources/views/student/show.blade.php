@@ -39,6 +39,7 @@
             <thead>
             <tr>
                 <th>Plan</th>
+                <th>Completion</th>
                 @if(Auth::user()->canEdit())
                     <th>
                         Operations
@@ -53,11 +54,20 @@
                     <td><a href="{{ action('PlanOfStudyController@show', [$student->id, $plan->id]) }}">{{ $plan->program->name }}</a></td>
                     @if(Auth::user()->canEdit())
                         <td>
+                            {!! Form::model($plan, ['method'=>'patch', 'action'=>['PlanOfStudyController@update', $student->id, $plan->id]]) !!}
+                            {!! Form::checkbox('graduated') !!}
+                        </td>
+                        <td>
+                            {!! Form::submit('Save', ['class'=>'btn']) !!}
+                            {!! Form::close() !!}
                             {!! Form::model($plan, ['method'=>'delete', 'class'=>'delete_confirm',
 		                               'action'=>['PlanOfStudyController@destroy', $student->id, $plan->id]]) !!}
-                            <a href="{{ action('PlanOfStudyController@edit', [$student->id, $plan->id]) }}" class="btn btn-cta-red">Edit</a>
                             {!! Form::submit('Delete', ['class' => 'btn']) !!}
                             {!! Form::close() !!}
+                        </td>
+                    @else
+                        <td>
+                            {{ $plan->graduated ? 'Completed' : 'Incomplete'}}
                         </td>
                     @endif
                 </tr>

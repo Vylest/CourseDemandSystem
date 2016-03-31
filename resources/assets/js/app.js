@@ -7,6 +7,15 @@ $(document).ready(function() {
 
     new program();
 
+    function checkRequirement() {
+        var courseSelect = $('#requirementCourseSelect').val();
+        var typeSelect = $('#requirementTypeSelect').val();
+        if (courseSelect == '?' || typeSelect == '?') {
+            return false;
+        }
+        return true;
+    }
+
     // popup for delete buttons
     $('.delete-confirm').on('submit', function() {
         return confirm('Are you sure you want to delete this?');
@@ -21,6 +30,10 @@ $(document).ready(function() {
 
     $("#showRequirementForm").on('click', function() {
         $("#addRequirementForm").toggle();
+    });
+
+    $('#addRequirement').on('click', function() {
+        $('#requirementQueue').show();
     });
 
     // activate collapse
