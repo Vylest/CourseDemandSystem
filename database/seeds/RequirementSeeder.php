@@ -15,8 +15,6 @@ class RequirementSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('degree_requirements')->truncate();
-
         $programs = Program::all();
         $programCount = Program::count();
 
@@ -25,16 +23,13 @@ class RequirementSeeder extends Seeder
 
         for($i=0; $i < $programCount; $i++) {
 
-            foreach(range(1,20) as $index) {
+            foreach(range(1,15) as $index) {
                     DegreeRequirement::create([
                     'type'=>rand(0,1),
                     'program_id'=>$programs[$i]->id,
                     'course_id'=>$courses[rand(0, $courseCount-1)]->id
                 ]);
             }
-
-
         }
-
     }
 }

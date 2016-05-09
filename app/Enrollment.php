@@ -17,6 +17,7 @@ class Enrollment extends Model
         'semester',
         'completed',
         'plan_of_study_id',
+        'degree_requirement_id',
         'course_id'
     ];
 

@@ -24,14 +24,15 @@ class PlanSeeder extends Seeder
 
         foreach ($students as $student) {
 
-            foreach(range(0, rand(1,4)) as $j) {
+            foreach(range(1, rand(1,2)) as $j) {
                 $student->plansOfStudy()->save(new PlanOfStudy(['program_id'=>$programs[rand(0, $programCount)]->id, 'graduated' => rand(0,1)]));
             }
 
             foreach($student->plansOfStudy as $plan) {
                 $programRequirements = DegreeRequirement::where('program_id', '=', $plan->program_id)->get();
                 foreach($programRequirements as $requirement) {
-                    $plan->enrollments()->save(new Enrollment(['course_id'=>$requirement->course_id, 'completed' => rand(0,1), 'credits' => rand(1,3), 'semester_id' => $semester->id]));
+                    $plan->enrollments()->save(new Enrollment(['course_id'=>$requirement->course_id, 'degree_requirement_id' => $requirement->id, 
+                        'completed' => rand(0,1), 'credits' => rand(1,3), 'semester_id' => $semester->id]));
                 }
             }
         }

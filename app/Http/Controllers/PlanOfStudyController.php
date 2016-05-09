@@ -42,7 +42,7 @@ class PlanOfStudyController extends Controller
         $completed = false;
 
         foreach ($program->degreeRequirements as $requirement) {
-            $plan->enrollments()->save(new Enrollment(['course_id'=>$requirement->course->id, 'semester_id'=>$semester, 'completed'=>$completed]));
+            $plan->enrollments()->save(new Enrollment(['course_id'=>$requirement->course->id, 'semester_id'=>$semester, 'degree_requirement_id'=>$requirement->id, 'completed'=>$completed]));
         }
 
         return redirect()->route('students.show', [$student->id])->with('success', 'The study plan has been successfully added!');

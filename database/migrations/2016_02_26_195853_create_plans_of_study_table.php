@@ -12,12 +12,18 @@ class CreatePlansOfStudyTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('plans_of_study', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id')->references('id')->on('students')->onDelete('cascade')->unsigned();
-            $table->integer('program_id')->references('id')->on('programs')->onDelete('cascade')->unsigned();
+            $table->integer('student_id')->unsigned();
+            $table->integer('program_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::table('plans_of_study', function(Blueprint $table) {
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
         });
     }
 

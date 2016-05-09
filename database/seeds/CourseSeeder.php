@@ -13,7 +13,6 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('courses')->truncate();
 
         Course::create(['title' => 'Composition I', 'number'=>'ENGL 1150']);
         Course::create(['title' => 'Composition II', 'number'=>'ENGL 1160']);
