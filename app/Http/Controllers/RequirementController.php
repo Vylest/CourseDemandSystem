@@ -12,6 +12,12 @@ use Carbon\Carbon;
 
 class RequirementController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('edit', ['only' => ['edit','store','create','destroy','update']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *

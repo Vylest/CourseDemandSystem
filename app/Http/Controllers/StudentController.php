@@ -12,6 +12,11 @@ use App\PlanOfStudy;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('edit', ['only' => ['edit','store','create','destroy','update']]);
+    }
+    
     public function index()
     {
 //        $students = Student::all();

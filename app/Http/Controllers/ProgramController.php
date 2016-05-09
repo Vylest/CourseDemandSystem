@@ -12,6 +12,11 @@ use App\DegreeRequirement;
 
 class ProgramController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('edit', ['only' => ['edit','store','create','destroy','update']]);
+    }
+
     public function index()
     {
         $programs = Program::all();

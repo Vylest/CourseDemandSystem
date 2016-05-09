@@ -14,6 +14,11 @@ use App\Semester;
 
 class PlanOfStudyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('edit', ['only' => ['edit','store','create','destroy','update']]);
+    }
+    
     public function index($id)
     {
         return redirect()->route('students.show', $id);
@@ -49,7 +54,9 @@ class PlanOfStudyController extends Controller
         $semesters = Semester::lists('semester', 'id');
         $courses =  Course::lists('title', 'id');
         $plan = PlanOfStudy::findOrFail($planId);
-        
+
+        //dd($plan->enrollments);
+
         return view('plans.show', compact('student', 'plan', 'semesters', 'courses'));
     }
 

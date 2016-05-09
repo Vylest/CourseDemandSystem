@@ -10,6 +10,12 @@ use App\Program;
 
 class CourseController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('edit', ['only' => ['edit','store','create','destroy','update']]);
+    }
+
     public function index()
     {
         // check for request parameters

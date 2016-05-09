@@ -6,16 +6,20 @@
         <thead>
         <tr>
             <th>Program</th>
-            <th>Operations <a href="{{ action('ProgramController@create') }}" class="btn pull-right">Create a New Program</a></th>
+            @if(Auth::user()->canEdit())
+                <th>Operations <a href="{{ action('ProgramController@create') }}" class="btn pull-right">Create a New Program</a></th>
+            @endif
         </tr>
         </thead>
         <tbody>
         @foreach ($programs as $program)
             <tr>
                 <td><a href="{{ action('ProgramController@show', $program->id) }}">{{ $program->name }}</a></td>
-                <td>
-                    @include('partials._operations', ['model'=>$program, 'controller'=>'ProgramController'])
-                </td>
+                @if(Auth::user()->canEdit())
+                    <td>
+                        @include('partials._operations', ['model'=>$program, 'controller'=>'ProgramController'])
+                    </td>
+                @endif
             </tr>
         @endforeach
         </tbody>

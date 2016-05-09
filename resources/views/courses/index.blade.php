@@ -36,24 +36,28 @@
                            ng-blur="showTitle = hideField($event)"
                            placeholder="Start typing to filter...">
                 </th>
-                <th><a class="btn pull-right" href="{{ action('CourseController@create') }}"><i class="fa fa-plus"></i> Create New Course</a></th>
+                @if(Auth::user()->canEdit())
+                    <th><a class="btn pull-right" href="{{ action('CourseController@create') }}"><i class="fa fa-plus"></i> Create New Course</a></th>
+                @endif
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="course in $data">
                 <td data-title="'Number'" sortable="'number'">@{{ course.number }}</td>
                 <td data-title="'Title'" sortable="'title'">@{{ course.title }}</td>
-                <td>
-                    <span class="pull-right">
-                        <form method="POST" action="@{{ '/courses/' + course.id }}" class="delete-confirm ng-pristine ng-valid">
-                            <input name="_method" type="hidden" value="DELETE">
-                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                            <a href="courses/@{{ course.id }}" class="btn"><i class="fa fa-eye"></i> View</a>
-                            <a href="courses/@{{ course.id }}/edit" class="btn"><i class="fa fa-edit"></i> Edit</a>
-                            <button type="submit" class="btn"><i class="fa fa-trash"></i> Delete</button>
-                        </form>
-                    </span>
-                </td>
+                @if(Auth::user()->canEdit())
+                    <td>
+                        <span class="pull-right">
+                            <form method="POST" action="@{{ '/courses/' + course.id }}" class="delete-confirm ng-pristine ng-valid">
+                                <input name="_method" type="hidden" value="DELETE">
+                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                <a href="courses/@{{ course.id }}" class="btn"><i class="fa fa-eye"></i> View</a>
+                                <a href="courses/@{{ course.id }}/edit" class="btn"><i class="fa fa-edit"></i> Edit</a>
+                                <button type="submit" class="btn"><i class="fa fa-trash"></i> Delete</button>
+                            </form>
+                        </span>
+                    </td>
+                @endif
             </tr>
 
         </tbody>
