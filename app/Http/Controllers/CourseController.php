@@ -103,6 +103,17 @@ class CourseController extends Controller
             $course->value = $course->id;
         }
 
-        return response()->json($courses);
+        return response()->json($this->transformCollection($courses),200);
+    }
+
+    private function transformCollection($courses) {
+        $courseArray = $courses->toArray();
+        return array_map([$this, 'transform'], $courseArray);
+    }
+
+    private function transform($course) {
+        return ['id' => $course['id'],
+                'number' => $course['number'],
+                'title'  => $course['title']];
     }
 }

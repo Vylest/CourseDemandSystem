@@ -47,7 +47,6 @@ Route::group(['middleware' => ['web']], function ($id) {
         Route::get('courses/get', 'CourseController@getCourses');
         Route::resource('courses', 'CourseController');
 
-
         //program
         Route::get('programs/{id}/info', 'ProgramController@info');
         Route::resource('programs', 'ProgramController');
@@ -71,6 +70,7 @@ Route::group(['middleware' => ['web']], function ($id) {
         // admin panel
         Route::get('admin', 'HomeController@admin');
 
+        // user management
         Route::group(['middleware' => ['id']], function ($id) {
             Route::get('users/{id}/editAccount', 'UserController@editAccount');
             Route::patch('users/{id}/updateAccount', 'UserController@updateAccount');
@@ -79,11 +79,13 @@ Route::group(['middleware' => ['web']], function ($id) {
             Route::patch('users/{id}/updatePassword', 'UserController@updatePassword');
         });
 
+        // admin user managment
         Route::group(['middleware'=>['admin']], function () {
             Route::resource('users', 'UserController');
             Route::get('users/{id}/password', array('uses' => 'UserController@changePassword', 'as' => 'users.password'));
         });
 
+        //  home pages
         Route::get('/', 'HomeController@dashboard');
         Route::get('dashboard', ['uses'=>'HomeController@dashboard', 'as' => 'dashboard']);
     });
