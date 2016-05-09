@@ -54,13 +54,13 @@
                     <td><a href="{{ action('PlanOfStudyController@show', [$student->id, $plan->id]) }}">{{ $plan->program->name }}</a></td>
                     @if(Auth::user()->canEdit())
                         <td>
-                            {!! Form::model($plan, ['method'=>'patch', 'action'=>['PlanOfStudyController@update', $student->id, $plan->id]]) !!}
+                            {!! Form::model($plan, ['method'=>'patch', 'class'=>'inlineForm','action'=>['PlanOfStudyController@update', $student->id, $plan->id]]) !!}
                             {!! Form::checkbox('graduated') !!}
                         </td>
                         <td>
                             {!! Form::submit('Save', ['class'=>'btn']) !!}
                             {!! Form::close() !!}
-                            {!! Form::model($plan, ['method'=>'delete', 'class'=>'delete_confirm',
+                            {!! Form::model($plan, ['method'=>'delete', 'class'=>'delete-confirm inlineForm',
 		                               'action'=>['PlanOfStudyController@destroy', $student->id, $plan->id]]) !!}
                             {!! Form::submit('Delete', ['class' => 'btn']) !!}
                             {!! Form::close() !!}

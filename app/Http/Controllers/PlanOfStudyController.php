@@ -84,6 +84,6 @@ class PlanOfStudyController extends Controller
 
         $plan->delete();
 
-        return redirect()->route('student.show', $student->id)->with('success', 'Plan successfully deleted');
+        return redirect()->route('students.show', $student->id)->with('success', 'Plan successfully deleted');
     }
 }

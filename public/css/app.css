@@ -2225,6 +2225,7 @@
 }
 .alert {
   padding-right: 25px !important;
+  font-weight: bold;
 }
 .alert .fa {
   position: relative;
@@ -2241,6 +2242,7 @@
 .operations {
   display: inline;
 }
-.inline {
-  display: inline;
+.inlineForm {
+  float: left;
+  padding-right: 5px;
 }
