@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DegreeRequirement;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,6 +11,12 @@ use App\Program;
 
 class CourseController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('edit', ['only' => ['edit','store','create','destroy','update']]);
+    }
+
     public function index()
     {
         // check for request parameters
@@ -51,7 +58,11 @@ class CourseController extends Controller
     public function show($id)
     {
         $course = Course::findOrFail($id);
-        $programs = Program::where('id', $course->id)->get();
+
+        $programs = DegreeRequirement::select('programs.id', 'programs.name', 'programs.type')
+                    ->where('course_id', $course->id)
+                    ->join('programs', 'degree_requirements.program_id', '=', 'programs.id')->get();
+
         return view('courses.show', compact('course', 'programs'));
     }
 
@@ -97,6 +108,19 @@ class CourseController extends Controller
             $course->value = $course->id;
         }
 
-        return response()->json($courses);
+        return response()->json($this->transformCollection($courses), 200);
+    }
+
+    private function transformCollection($courses)
+    {
+        $courseArray = $courses->toArray();
+        return array_map([$this, 'transform'], $courseArray);
+    }
+
+    private function transform($course)
+    {
+        return ['id' => $course['id'],
+                'number' => $course['number'],
+                'title'  => $course['title']];
     }
 }

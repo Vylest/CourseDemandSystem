@@ -9,7 +9,11 @@
                 <thead>
                     <tr>
                         <th>Details</th>
-                        <th><span class="pull-right">@include('partials._operations', ['model'=>$program,'controller'=>'ProgramController'])</span></th>
+                        <th>
+                            @if(Auth::user()->canEdit())
+                                <span class="pull-right">@include('partials._operations', ['model'=>$program,'controller'=>'ProgramController'])</span>
+                            @endif
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,10 +33,12 @@
             </table>
         </div>
     </div>
-    {!! Form::open([
-                'action' => ['RequirementController@store', $program->id]]) !!}
-    @include('programs._formRequirements')
-    {!! Form::close() !!}
+    @if(Auth::user()->canEdit())
+        {!! Form::open([
+                    'action' => ['RequirementController@store', $program->id]]) !!}
+        @include('programs._formRequirements')
+        {!! Form::close() !!}
+    @endif
     @if ( isset($requirements))
             <h3>Requirements</h3>
             <table class="gridder">
@@ -40,10 +46,12 @@
                 <tr>
                     <th>Course</th>
                     <th>Type</th>
-                    <th>
-                        Operations
-                        <a class="btn pull-right" id="showRequirementForm">Add a Course</a>
-                    </th>
+                    @if(Auth::user()->canEdit())
+                        <th>
+                            Operations
+                            <a class="btn pull-right" id="showRequirementForm">Add a Course</a>
+                        </th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -51,11 +59,14 @@
                     <tr>
                         <td>{{ $requirement->course->number }} - {{ $requirement->course->title}}</td>
                         <td>{{ $requirement->type ? 'Elective' : 'Required'  }}</td>
-                        <td>{!! Form::model($requirement, ['method'=>'delete', 'class'=>'delete-confirm operations',
-		                               'action'=>['RequirementController@destroy', $program, $requirement->id]]) !!}
-                            <a href="{{ action('RequirementController@edit', [$program, $requirement->id]) }}" class="btn btn-cta-red">Edit</a>
-                            {!! Form::submit('Delete', ['class' => 'btn']) !!}
-                            {!! Form::close() !!}</td>
+                        @if(Auth::user()->canEdit())
+                            <td>{!! Form::model($requirement, ['method'=>'delete', 'class'=>'delete-confirm operations',
+                                           'action'=>['RequirementController@destroy', $program, $requirement->id]]) !!}
+                                <a href="{{ action('RequirementController@edit', [$program, $requirement->id]) }}" class="btn btn-cta-red">Edit</a>
+                                {!! Form::submit('Delete', ['class' => 'btn']) !!}
+                                {!! Form::close() !!}
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>

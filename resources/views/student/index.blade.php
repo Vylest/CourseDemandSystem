@@ -64,12 +64,14 @@
                                ng-blur="showNuId = hideField($event)">
                     </th>
                     <th>Status</th>
-                    @if(Auth::user()->is_admin)
-                        <th>
-                            Operations
+
+                    <th>
+                        Operations
+                        @if(Auth::user()->canEdit())
                             <a class="btn pull-right" href="{{ action('StudentController@create') }}"><i class="fa fa-plus"></i> Add a New Student</a>
-                        </th>
-                    @endif
+                        @endif
+                    </th>
+
                 </tr>
             </thead>
             <tbody>
@@ -79,19 +81,19 @@
                     <td data-title="'Net ID'" sortable="'netid'">@{{ student.netid }}</td>
                     <td data-title="'NU ID'" sortable="'nuid'">@{{ student.nuid }}</td>
                     <td data-title="'Status'" sortable="''status'">@{{ student.status }}</td>
-                    @if(Auth::user()->is_admin)
-                        <td>
-                            <span class="pull-right span4">
-                                <form method="POST" action="@{{ '/students/' + student.id }}" class="delete-confirm ng-pristine ng-valid">
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                    <a href="/students/@{{ student.id }}" class="btn btn-xs"><i class="fa fa-eye"></i> View</a>
+                    <td>
+                        <span class="pull-right span4">
+                            <form method="POST" action="@{{ '/students/' + student.id }}" class="delete-confirm ng-pristine ng-valid">
+                                <input name="_method" type="hidden" value="DELETE">
+                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                <a href="/students/@{{ student.id }}" class="btn btn-xs"><i class="fa fa-eye"></i> View</a>
+                                @if(Auth::user()->canEdit())
                                     <a href="/students/@{{ student.id }}/edit" class="btn btn-xs"><i class="fa fa-edit"></i> Edit</a>
                                     <button type="submit" class="btn btn-xs"><i class="fa fa-trash"></i> Delete</button>
-                                </form>
-                            </span>
-                        </td>
-                    @endif
+                                @endif
+                            </form>
+                        </span>
+                    </td>
                 </tr>
             </tbody>
         </table>

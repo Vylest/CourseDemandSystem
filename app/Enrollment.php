@@ -17,6 +17,7 @@ class Enrollment extends Model
         'semester',
         'completed',
         'plan_of_study_id',
+        'degree_requirement_id',
         'course_id'
     ];
 
@@ -41,6 +42,11 @@ class Enrollment extends Model
     public function semester()
     {
         return $this->hasOne('Semester');
+    }
+
+    public function degreeRequirement()
+    {
+        return $this->belongsTo('DegreeRequirement');
     }
 
     // mutators

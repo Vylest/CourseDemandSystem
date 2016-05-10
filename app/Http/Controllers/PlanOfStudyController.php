@@ -14,6 +14,11 @@ use App\Semester;
 
 class PlanOfStudyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('edit', ['only' => ['edit','store','create','destroy','update']]);
+    }
+    
     public function index($id)
     {
         return redirect()->route('students.show', $id);
@@ -37,7 +42,7 @@ class PlanOfStudyController extends Controller
         $completed = false;
 
         foreach ($program->degreeRequirements as $requirement) {
-            $plan->enrollments()->save(new Enrollment(['course_id'=>$requirement->course->id, 'semester_id'=>$semester, 'completed'=>$completed]));
+            $plan->enrollments()->save(new Enrollment(['course_id'=>$requirement->course->id, 'semester_id'=>$semester, 'degree_requirement_id'=>$requirement->id, 'completed'=>$completed]));
         }
 
         return redirect()->route('students.show', [$student->id])->with('success', 'The study plan has been successfully added!');
@@ -49,7 +54,7 @@ class PlanOfStudyController extends Controller
         $semesters = Semester::lists('semester', 'id');
         $courses =  Course::lists('title', 'id');
         $plan = PlanOfStudy::findOrFail($planId);
-        
+
         return view('plans.show', compact('student', 'plan', 'semesters', 'courses'));
     }
 
@@ -57,7 +62,6 @@ class PlanOfStudyController extends Controller
     {
         $student = Student::findOrFail($studentId);
         $plan = PlanOfStudy::findOrFail($planId);
-        
         
     }
 
@@ -77,6 +81,6 @@ class PlanOfStudyController extends Controller
 
         $plan->delete();
 
-        return redirect()->route('student.show', $student->id)->with('success', 'Plan successfully deleted');
+        return redirect()->route('students.show', $student->id)->with('success', 'Plan successfully deleted');
     }
 }

@@ -28,4 +28,9 @@ class DegreeRequirement extends Model
     {
         return $this->belongsTo('Course');
     }
+    
+    public function enrollments()
+    {
+        return $this->hasMany('Enrollment');
+    }
 }
