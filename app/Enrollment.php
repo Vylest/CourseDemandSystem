@@ -44,6 +44,11 @@ class Enrollment extends Model
         return $this->hasOne('Semester');
     }
 
+    public function degreeRequirement()
+    {
+        return $this->belongsTo('DegreeRequirement');
+    }
+
     // mutators
     public function getCreatedAtAttribute($date)
     {

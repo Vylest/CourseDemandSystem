@@ -55,8 +55,6 @@ class PlanOfStudyController extends Controller
         $courses =  Course::lists('title', 'id');
         $plan = PlanOfStudy::findOrFail($planId);
 
-        //dd($plan->enrollments);
-
         return view('plans.show', compact('student', 'plan', 'semesters', 'courses'));
     }
 
@@ -64,7 +62,6 @@ class PlanOfStudyController extends Controller
     {
         $student = Student::findOrFail($studentId);
         $plan = PlanOfStudy::findOrFail($planId);
-        
         
     }
 
