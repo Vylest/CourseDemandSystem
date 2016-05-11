@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Student;
+use App\Enrollment;
 use App\PlanOfStudy;
 
 class StudentController extends Controller
@@ -94,7 +95,12 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
+
+        $plan = PlanOfStudy::where('student_id', '=', $student->id)->first();
+        Enrollment::where('plan_of_study_id', '=', $plan->id)->delete();
+        PlanOfStudy::where('student_id', '=', $student->id)->delete();
         $student->delete();
+
         return redirect()->route('students.index')->with('success', 'Student record successfully deleted!');
     }
 
