@@ -49,7 +49,7 @@
                     @if(Auth::user()->canEdit())
                         <th>
                             Operations
-                            <a class="btn pull-right" id="showRequirementForm">Add a Course</a>
+                            <a class="btn pull-right" id="showRequirementForm"><i class="fa fa-plus"></i> Add a Course</a>
                         </th>
                     @endif
                 </tr>
@@ -68,7 +68,7 @@
                             @if(Auth::user()->is_admin)
                                     {!! Form::model($requirement, ['method'=>'delete', 'class'=>'delete-cascade operations',
                                                'action'=>['RequirementController@destroyCascade', $program, $requirement->id]]) !!}
-                                    {!! Form::submit('Delete & Cascade', ['class' => 'btn btn-danger']) !!}
+                                        <button type="submit" class="btn btn-danger">☢ Delete & Cascade</button>
                                     {!! Form::close() !!}
                             @endif
                             </td>

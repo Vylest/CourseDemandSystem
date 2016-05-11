@@ -15,9 +15,9 @@ class StudentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('edit', ['only' => ['edit','store','create','destroy','update']]);
+        $this->middleware('edit', ['only' => ['edit', 'store', 'create', 'destroy', 'update']]);
     }
-    
+
     public function index()
     {
 //        $students = Student::all();
@@ -47,7 +47,7 @@ class StudentController extends Controller
             $filterParam = $input['filter'];
 
             foreach ($filterParam as $key => $value) {
-                $filterValue = '%'. $value . '%';
+                $filterValue = '%' . $value . '%';
                 $column = $key;
                 $query = $query->where($column, 'like', $filterValue);
             }
@@ -97,15 +97,12 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         $plan = PlanOfStudy::where('student_id', '=', $student->id)->first();
+
+        //delete cascades
         Enrollment::where('plan_of_study_id', '=', $plan->id)->delete();
         PlanOfStudy::where('student_id', '=', $student->id)->delete();
         $student->delete();
 
         return redirect()->route('students.index')->with('success', 'Student record successfully deleted!');
-    }
-
-    public function manage()
-    {
-        return view('student.manage');
     }
 }

@@ -121,6 +121,7 @@
                             <li><a href="http://www.unomaha.edu/">UNO</a></li>
                             <li><a href="http://www.unomaha.edu/college-of-information-science-and-technology/">College of Information Science &amp; Technology</a></li>
                             <li><a href="/">MavPlan</a></li>
+                            @yield('breadcrumbs')
                         </ul>
                     </div>
                 </div>

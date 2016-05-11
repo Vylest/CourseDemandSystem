@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Program;
 use App\Course;
 use App\DegreeRequirement;
+use App\PlanOfStudy;
 
 class ProgramController extends Controller
 {
@@ -59,6 +60,10 @@ class ProgramController extends Controller
     public function destroy($id)
     {
         $program = Program::findOrFail($id);
+        // delete cascades
+        PlanOfStudy::where('program_id', '=', $program->id)->delete();
+        DegreeRequirement::where('program_id', '=', $program->id)->delete();
+        
         $program->delete();
         return redirect()->route('programs.index')->with('success', 'Program successfully deleted!');
     }

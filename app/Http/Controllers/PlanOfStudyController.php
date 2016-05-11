@@ -78,6 +78,8 @@ class PlanOfStudyController extends Controller
     {
         $student = Student::findOrFail($studentId);
         $plan = PlanOfStudy::findOrFail($planId);
+        // delete cascade
+        Enrollments::where('plan_of_study_id', '=', $plan->id)->delete();
 
         $plan->delete();
 
