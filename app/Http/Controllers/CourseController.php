@@ -26,9 +26,6 @@ class CourseController extends Controller
             return view('courses.index');
         }
 
-//        $courses = Course::paginate();
-        //$query = Course::select('number', 'title');
-
         if (isset($input['sorting'])) {
             $orderParam = $input['sorting'];
             $orderBy = key($orderParam);

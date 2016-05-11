@@ -65,6 +65,12 @@
                                 <a href="{{ action('RequirementController@edit', [$program, $requirement->id]) }}" class="btn btn-cta-red">Edit</a>
                                 {!! Form::submit('Delete', ['class' => 'btn']) !!}
                                 {!! Form::close() !!}
+                            @if(Auth::user()->is_admin)
+                                    {!! Form::model($requirement, ['method'=>'delete', 'class'=>'delete-cascade operations',
+                                               'action'=>['RequirementController@destroyCascade', $program, $requirement->id]]) !!}
+                                    {!! Form::submit('Delete & Cascade', ['class' => 'btn btn-danger']) !!}
+                                    {!! Form::close() !!}
+                            @endif
                             </td>
                         @endif
                     </tr>
