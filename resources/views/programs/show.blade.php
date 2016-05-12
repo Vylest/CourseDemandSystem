@@ -68,7 +68,7 @@
                             @if(Auth::user()->is_admin)
                                     {!! Form::model($requirement, ['method'=>'delete', 'class'=>'delete-cascade operations',
                                                'action'=>['RequirementController@destroyCascade', $program, $requirement->id]]) !!}
-                                        <button type="submit" class="btn btn-danger">☢ Delete & Cascade</button>
+                                        <button type="submit" class="btn btn-warning">☢ Delete & Cascade</button>
                                     {!! Form::close() !!}
                             @endif
                             </td>
