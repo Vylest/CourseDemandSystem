@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('page_title'){{ $student->name }} ({{ $student->netid }}, {{ $student->nuid }}) @endsection
-
+@section('breadcrumbs')
+    <li><a href="{{ action('StudentController@index') }}">Students</a></li>
+@endsection
 @section('content')
 	<div class="row">
 		<div class="span6">
@@ -10,7 +12,7 @@
                 <tr>
                     <th>Student Information</th>
                     <th>
-                        @if(!Auth::user()->hasRole('read-only'))
+                        @if(Auth::user()->canEdit())
                             @include('partials._operations', ['model'=>$student,'controller'=>'StudentController'])
                         @endif
                     </th>

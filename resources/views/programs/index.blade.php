@@ -7,7 +7,7 @@
         <tr>
             <th>Program</th>
             @if(Auth::user()->canEdit())
-                <th>Operations <a href="{{ action('ProgramController@create') }}" class="btn pull-right">Create a New Program</a></th>
+                <th>Operations <a href="{{ action('ProgramController@create') }}" class="btn pull-right"><i class="fa fa-plus"></i> Create a New Program</a></th>
             @endif
         </tr>
         </thead>

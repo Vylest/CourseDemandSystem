@@ -2,6 +2,7 @@
 
 @section('page_title')Students @endsection
 
+
 @section('content')
     <div ng-controller="TableController" infinite-scroll="scrollService.nextPage()">
         <table class="gridder" ng-table="tableParams" show-filter="true">

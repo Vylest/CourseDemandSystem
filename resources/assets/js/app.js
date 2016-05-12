@@ -21,6 +21,11 @@ $(document).ready(function() {
         return confirm('Are you sure you want to delete this?');
     });
 
+    // cascade delete confirm
+    $('.delete-cascade').on('submit', function() {
+        return confirm("\t\tAre you SURE you want to delete this?\nTHIS WILL DELETE ALL ENROLLMENTS ASSOCIATED WITH THIS DEGREE PROGRAM FOR ALL STUDENTS");
+    });
+
     // fade alerts that indicate success
     window.setTimeout(function() {
         $(".alert-success").fadeTo(500, 0).slideUp(500, function() {

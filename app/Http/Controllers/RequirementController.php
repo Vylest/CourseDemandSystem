@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\DegreeRequirement;
 use App\Program;
 use App\Course;
+use App\Enrollment;
 use Carbon\Carbon;
 
 class RequirementController extends Controller
@@ -121,7 +122,20 @@ class RequirementController extends Controller
     public function destroy($program, $reqId)
     {
         $requirement = DegreeRequirement::findOrFail($reqId);
+
         $requirement->delete();
         return redirect()->route('programs.show', $program)->with('success', 'The requirement has been deleted!');
+    }
+
+
+    public function destroyCascade($program, $reqId)
+    {
+        $requirement = DegreeRequirement::findOrFail($reqId);
+
+        // delete all enrollment models that use this degree req
+        Enrollment::where('degree_requirement_id', '=', $requirement->id)->delete();
+
+        $requirement->delete();
+        return redirect()->route('programs.show', $program)->with('success', 'The requirement has been deleted, and so have all enrollments associated');
     }
 }

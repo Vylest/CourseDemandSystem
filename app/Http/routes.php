@@ -34,7 +34,6 @@ Route::group(['middleware' => ['web']], function ($id) {
     Route::group(['middleware' => ['guest']], function () {
         Route::get('/home', 'UserController@login');
         Route::get('/', 'UserController@login');
-        //Route::get('auth/login', 'UserController@login');
     });
 
     Route::get('auth/logout', array('uses' => 'UserController@logout', 'as' => 'auth.logout'));
@@ -53,6 +52,11 @@ Route::group(['middleware' => ['web']], function ($id) {
 
         //program requirements
         Route::resource('programs.requirements', 'RequirementController', ['parameters'=>'singular', 'except'=>['show','index']]);
+        Route::delete(
+            'programs/{program}/requirements/{requirement}/cascade',
+            ['uses' => 'RequirementController@destroyCascade',
+            'as'   => 'programs.requirements.destroy.cascade']
+        )->middleware('admin');
 
         // plan of study
         Route::resource('students.plans', 'PlanOfStudyController', ['parameters'=>'singular']);

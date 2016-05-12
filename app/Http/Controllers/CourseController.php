@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DegreeRequirement;
+use App\Enrollment;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,9 +26,6 @@ class CourseController extends Controller
         if (!\Request::wantsJson()) {
             return view('courses.index');
         }
-
-//        $courses = Course::paginate();
-        //$query = Course::select('number', 'title');
 
         if (isset($input['sorting'])) {
             $orderParam = $input['sorting'];
@@ -96,7 +94,12 @@ class CourseController extends Controller
     public function destroy($id)
     {
         $course = Course::findOrFail($id);
+        // deletion cascades
+        DegreeRequirement::where('course_id', '=', $course->id)->delete();
+        Enrollment::where('course_id', '=', $course->id)->delete();
+
         $course->delete();
+
         return redirect()->route('courses.index')->with('success', 'The course has been successfully deleted!');
     }
 
